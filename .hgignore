@@ -1,3 +1,4 @@
 syntax: glob
 
 dyer/navigable_dict/*
+dyer/out.xml

@@ -1,4 +1,5 @@
 import json,codecs,re,math,os
+from StringIO import StringIO
 
 dictionary = json.load(codecs.open("../../esper2ido/esper2ido/dicts/dyer.json", "rt", "utf-8"))
 
@@ -81,23 +82,7 @@ def bruteforce_distribution(weights, max_pieces,  already, last_occupied):
             for residue in bruteforce_distribution(weights, max_pieces, already+1, i):
                 yield [i]+residue
 
-def emit(entry):
-    name = entry[0].replace("_","")
-    start_end = name.split("-")
-    start = start_end[0]
-    end = start_end[1] if len(start_end)>1 else start
-    end = end+"zzzzzzzzz"
-    print >>sink, """<a href="io/%s.html">%s</a> """ % (name, name)
-    
-    sink2 = codecs.open("navigable_dict/io/%s.html" % name, "wt", "utf-8")
-    for t,idx in titles:
-        if t>=start and t<=end:
-            a = articles[idx]
-            a = a.replace("<k>","<b>").replace("</k>","</b>")
-            a = a.replace("<ex>","<i>").replace("</ex>","</i>")
-            print >>sink2, a+"<br>"
-    sink2.close()
-    
+
 
 def process_node(node):
     snk = sorted(node.keys())
@@ -108,7 +93,7 @@ def process_node(node):
             if accum:
                 for e in distribute(accum):
                     c+=1
-                    emit(e)
+                    yield e
             process_node(node[k]["kids"])
             accum = []
         else:
@@ -116,18 +101,44 @@ def process_node(node):
     if accum:
         for e in distribute(accum):
             c+=1
-            emit(e)
+            yield e
         
 try:
     os.mkdir("navigable_dict")
     os.mkdir("navigable_dict/io")
 except:
     pass
-sink = open("navigable_dict/index_io.html", "wt")
+sink_letters = StringIO()
+sink_subdivs = StringIO()
 
         
 for letter in sorted(prefix_tree.keys()):
     c = 0
-    print >>sink, """<h3>%s</h3> """ % letter
-    process_node(prefix_tree[letter]["kids"])
+    print >>sink_letters, """<b>%s</b> """ % letter
+    print >>sink_subdivs, """<br> """
+    subdivs = list(process_node(prefix_tree[letter]["kids"]))
+    
+    for entry in subdivs:
+        name = entry[0].replace("_","")
+        start_end = name.split("-")
+        start = start_end[0]
+        end = start_end[1] if len(start_end)>1 else start
+        end = end+"zzzzzzzzz"
+        print >>sink_subdivs, """<a href="io/%s.html">%s</a> """ % (name, name)
+        
+        sink2 = codecs.open("navigable_dict/io/%s.html" % name, "wt", "utf-8")
+        for t,idx in titles:
+            if t>=start and t<=end:
+                a = articles[idx]
+                a = a.replace("<k>","<b>").replace("</k>","</b>")
+                a = a.replace("<ex>","<i>").replace("</ex>","</i>")
+                print >>sink2, a+"<br>"
+        sink2.close()
     print c
+
+
+out = open("navigable_dict/index_io.html", "wt")
+print >>out, sink_letters.getvalue()
+print >>out, "<hr>"
+print >>out, sink_subdivs.getvalue()
+
