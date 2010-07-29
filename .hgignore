@@ -1,0 +1,3 @@
+syntax: glob
+
+dyer/navigable_dict/*

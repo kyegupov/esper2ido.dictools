@@ -118,11 +118,13 @@ def process_node(node):
             c+=1
             emit(e)
         
-sink = open("navigable_dict/index_io.html", "wt")
 try:
+    os.mkdir("navigable_dict")
     os.mkdir("navigable_dict/io")
 except:
     pass
+sink = open("navigable_dict/index_io.html", "wt")
+
         
 for letter in sorted(prefix_tree.keys()):
     c = 0
