@@ -94,7 +94,9 @@ def process_node(node):
                 for e in distribute(accum):
                     c+=1
                     yield e
-            process_node(node[k]["kids"])
+            for e in process_node(node[k]["kids"]):
+                c+=1
+                yield e
             accum = []
         else:
             accum.append((k,node[k]["count"]))
