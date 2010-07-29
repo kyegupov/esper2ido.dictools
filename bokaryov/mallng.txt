@@ -1,0 +1,367 @@
+[adr.] {[adreso]} `адрес.
+
+[AIDS] {[akirita imundeficita sindromo, aidoso]} _мед._ синдр`ом приобретённого имуннодефиц`ита, СПИД.
+
+[Ak.] {[Akademio]} Акад`емия.
+
+[a.K.] {[antaux Kristnasko]} до Рождеств`а Христ`ова (= <a.n.e.>).
+
+[ak-ano] {[akademiano]} акад`емик.
+
+[a.n.e.] {[antaux nia erao]} до н`ашей `эры.
+
+[anst.] {[anstataux]} вм`есто.
+
+[Apr.] {[aprilo]} апр`ель.
+
+[ASE] {[Asocio de Sovetiaj Esperantistoj]} _ист._ Ассоци`ация сов`етских эсперант`истов, АСЭ.
+
+[atm.] {[antauxtagmeze]} до пол`удня.
+
+[Auxg.] {[auxgusto]} `август.
+
+[AVI@impost.0o.AVI] {[aldonvalora imposto]} _эк._ нал`ог на доб`авленную ст`оимость, НДС.
+
+[BET] {[Baltia Esperanta Tendaro, Baltiaj Esperantaj Tagoj]}.
+
+[bind.] {[bindita]} в переплёте.
+
+[bk.] {[bildkarto]} откр`ытка.
+
+[brosx.] {[brosxurita]} брошюр`ованный.
+
+[bv.] {[bonvolu]} б`удьте д`обры, пож`алуйста.
+
+[CED] {[Centro de Esploro kaj Dokumentado]} центр иссл`едований и документ`ации.
+
+[CK] {[Centra Komitato]} центр`альный комит`ет.
+
+[cm] {[centimetro]} _ед.изм._ сантим`етр.
+
+[CO] {[Centra Oficejo]} центр`альное бюр`о.
+
+[cx.] {[cxirkaux]} `около, приблиз`ительно.
+
+[Dec.] {[decembro]} дек`абрь.
+
+[del.] {[delegito]} делег`ат, уполном`оченный.
+
+[de n.e.] {[de nia erao]} н`ашей `эры.
+
+[dir.] {[direktoro]} дир`ектор.
+
+[doc.] {[docento]} доц`ент.
+
+[d-ro] {[doktoro]} д`октор.
+
+[d-rino] {[doktorino]} д`октор _(о женщине)_.
+
+[E.] {[Esperanto]} Эспер`анто.
+
+[E-a] {[Esperanta]} эспер`антский.
+
+[EA] {[Esperanto-Asocio, Esperantista Asocio]} эспер`антская ассоци`ация.
+
+[EF] {[Esperantista Federacio]} эспер`антская федер`ация.
+
+[EI] {[Esperanto-Instituto]} инстит`ут эспер`анто.
+
+[ekskl.] {[ekskluzive]} исключ`ая, исключ`ительно.
+
+[ekz.]
+ # {[ekzemple]} наприм`ер;
+ # {[ekzemplero]} экземпл`яр.
+
+[EL@el.html] {[Esperanto-Ligo]} эспер`антская л`ига.
+
+[eld.]
+ # {[eldono]} изд`ание;
+ # {[eldonejo]} изд`ательство;
+ # {[eldoninto]} изд`атель.
+
+[E-o] {[Esperanto]} Эспер`анто.
+
+[EoLA] {[Esperanto -- Lingvo Arta]} _(фестиваль)_.
+
+[Esp.]
+ # {[Esperanto]} эспер`анто;
+ # {[Esperanta]} эспер`антский.
+
+[esp-isto] эсперант`ист.
+
+[esp-ista] эспер`антский, эсперант`истский.
+
+[FD., f.d.] {[fakdelegito]} уполном`оченный по специ`альности.
+
+[Feb.] {[februaro]} февр`аль.
+
+[f-ino@fin.0o] {[frauxlino]} д`евушка, дев`ица.
+
+[FK] {["Fundamenta Krestomatio"]} "Основн`ая хрестом`атия" _(составленная Л. Л. Заменгофом)_.
+
+[g] {[gramo]} _ед.изм._ грамм.
+
+[GMT] {[Grenvicxa meza tempo]} вр`емя по Гр`инвичу.
+
+[i.a.@ia.0] {[interalie]} м`ежду пр`очим.
+
+[IEL@iel.0] {[Internacia Esperanto-Ligo]} Междунар`одная эспер`антская л`ига.
+
+[IEMW] {[Internacia Esperanto-Muzeo (en Wien)]} Междунар`одный муз`ей эспер`анто (в В`ене).
+
+[IFEF] {[Internacia Federacio Esperantista Fervojista]} Междунар`одная эспер`антская федер`ация железнодор`ожников.
+
+[IL@il.html] {[Internacia lingvo]} междунар`одный яз`ык.
+
+[il.@il.html] {[ilustrita]} иллюстр`ированный, с иллюстр`ациями.
+
+[ILEI] {[Internacia Ligo de Esperantistaj Instruistoj]} Междунар`одная л`ига преподав`ателей эспер`анто.
+
+[ILO] {[Internacia Labor-Organizajxo]} Междунар`одная Организ`ация Труд`а _(при ООН)_, МОТ.
+
+[IMF@mon.0a.IMF] {[Internacia Monda Fonduso]} Междунар`одный Вал`ютный Фонд _(при ООН)_, МВФ.
+
+[ingx.] {[ingxeniero]} инжен`ер.
+
+[inkl.] {[inkluzive]} включ`ительно.
+
+[int.] {[internacia]} междунар`одный.
+
+[irk.] {[internacia respondkupono]} междунар`одный респондкуп`он.
+
+[ISAE] {[Internacia Scienca Asocio Esperantista]} Междунар`одная на`учная ассоци`ация эсперант`истов.
+
+[ISU] {[Internacia Somera Universitato]} Междунар`одный л`етний университ`ет.
+
+[IUEF] {[Internacia Unuigxo de la Esperantistoj-filologoj]} Междунар`одный со`юз эсперант`истов-фил`ологов.
+
+[j.] {[jaro]} год.
+
+[Jan.] {[januaro]} янв`арь.
+
+[j.c.] {[jarcento]} стол`етие, век.
+
+[JD, j.d.] {[junulara delegito]} молодёжный делег`ат, делег`ат по вопр`осам молодёжи.
+
+[Jul.] {[julio]} и`юль.
+
+[jun.]
+ # {[junulo]} `юноша;
+ # {[junularo]} молодёжь;
+ # {[junulara]} молодёжный;
+ # {[junio]} и`юнь.
+
+[k] {[kaj]} и.
+
+[k.a.] {[kaj aliaj]} и друг`ие.
+
+[kand.] {[kandidato]} кандид`ат.
+
+[kas.] {[kasisto]} касс`ир.
+
+[k.c.] {[kaj ceteraj]} и пр`очие.
+
+[k-do] {[kamarado]} тов`арищ.
+
+[k-dino] {[kamaradino]} тов`арищ _(о женщине)_.
+
+[k.e.p.] {[kio estis pruvota]} что и тр`ебовалось доказ`ать, ч.т.д.
+
+[kg] {[kilogramo]} _ед.изм._ килогр`амм.
+
+[kHz] {[kiloherco]} _ед.изм._ килог`ерц.
+
+[K-io@kio.0] {[kompanio]} комп`ания.
+
+[KKS] {[Konstanta Kongresa Sekretario]} посто`янный секрет`арь конгр`ессов.
+
+[km] {[kilometro]} _ед.изм._ килом`етр.
+
+[kp.] {[komparu]} сравн`и.
+
+[KPSU] {[Komunista Partio de Sovet-Unio]} _ист._ Коммунист`ическая п`артия Сов`етского Со`юза, КПСС.
+
+[k.s.] {[kaj simile]} и том`у под`обное.
+
+[k.sekv.] {[kaj sekvantaj]} и сл`едующие.
+
+[KSSx] {[Konsorcio de Sendependaj Statoj]} Содр`ужество Незав`исимых Госуд`арств, СНГ.
+
+[k.t.p.] {[kaj tiel plu]} и так д`алее.
+
+[l.] {[litro]} литр.
+
+[lab.]
+ # {[laboristo]} раб`очий _(сущ.)_;
+ # {[laborista]} раб`очий _(прил.)_.
+
+[LEA.] {[Laborista Esperanto-Asocio]} Раб`очая эспер`антская ассоци`ация.
+
+[LI@li.0] {[lingvo internacia]} междунар`одный яз`ык.
+
+[LK] {[Lingva Komitato]} языков`ой комит`ет.
+
+[LKK] {[Loka Kongresa Komitato]} М`естный комит`ет конгр`есса.
+
+[m] {[metro]} _ед.изм._ метр.
+
+[mag.] {[magistro]} маг`истр.
+
+[MEM@mem.html] {[Mondpaca Esperantista Movado]} Движ`ение эсперант`истов за мир.
+
+[MET] {[Mezeuxropa tempo]} среднеевроп`ейское вр`емя.
+
+[MOM@meteol.0o.MOM] {[Monda Organizajxo pri Meteorologio]} Всем`ирная метеоролог`ическая организ`ация _(при ООН)_, ВМО.
+
+[MOS@san.0o.MOS] {[Monda Organizajxo pri Sano]} Всем`ирная Организ`ация Здравоохран`ения _(при ООН)_, ВОЗ.
+
+[MOT@turism.0o.MOT] {[Monda Organizajxo pri Turismo]} Всем`ирная тур`истская организ`ация _(при ООН)_, ВТО.
+
+[NATO@trakta.0o.NATO] {[Nord-Atlantika Traktat-Organizajxo]} Организ`ация Североатлант`ического догов`ора, НАТО.
+
+[NB] {[notu bone]} нотаб`ене, зам`еть хорош`о.
+
+[ndlr] {[noto de la redaktoro]} примеч`ание ред`актора.
+
+[NIFO@nif.0o] {[neidentigita fluganta objekto]} неоп`ознанный лет`ающий объ`ект, НЛО.
+
+[Nov.] {[novembro]} но`ябрь.
+
+[n-ro] {[numero]} н`омер.
+
+[OET] {[Orient-Euxropa tempo]} вост`очно-европ`ейское вр`емя.
+
+[OPEL@petrol.0o.OPEL] {[Organizajxo de Petrol-Eksportaj Landoj]} Организ`ация стран-экспортёров н`ефти, ОПЕК.
+
+[Okt.] окт`ябрь.
+
+[p.] {[pagxo]} стран`ица.
+
+[PAG] {["Plena Analiza Gramatiko"]} "П`олная аналит`ическая грамм`атика" _(составленная К. Калочаем и Г. Варенгьеном)_.
+
+[PGKD@divizo.plej_granda_komuna_0o] plej granda komuna divizoro _мат._ наиб`ольший `общий дел`итель, НОД.
+
+[PIV] "Plena Ilustrita Vortaro" "П`олный иллюстр`ированный слов`арь".
+
+[PIVS] {[PIV-Suplemento]} Дополн`ение к PIV.
+
+[pk.] {[posxtkarto]} откр`ытка, почт`овая к`арточка.
+
+[p.K.] {[post Kristnasko]} от Рождеств`а Христ`ова (= <de n.e.>).
+
+[pm.] {[posxtmarko]} почт`овая м`арка.
+
+[PMKO@obl.plej_malgranda_komuna_0o] plej malgranda komuna oblo _мат._ наим`еньшее `общее кр`атное, НОК.
+
+[PMEG] {["Plena Manlibro de Esperanta Gramatiko"]} "П`олное руков`одство по эспер`антской грамм`атике" _(составленное Б. Веннергреном)_
+
+[prez.] {[prezidanto]} председ`атель; презид`ент.
+
+[prof.] {[profesoro]} проф`ессор.
+
+[proks.] {[proksimume]} приблиз`ительно.
+
+[P.S.] {[posta skribo]} постскр`иптум.
+
+[ptm.] {[posttagmeze]} попол`удни.
+
+[PTT] {[posxto, telegrafo kaj telefono]} п`очта, телегр`аф и телеф`он; связь.
+
+[PV] {["Plena Vortaro"]} "П`олный слов`арь".
+
+[red.] {[redaktoro]} ред`актор.
+
+[REJM] {[Rusia Esperantista Junulara Movado]} Росс`ийское Молодёжное Движ`ение Эсперант`истов.
+
+[resp.]
+ # {[respektive]} соотв`етственно;
+ # {[respondeca]} отв`етственный.
+
+[REU] {[Rusia Esperantista Unio]} Росс`ийский Со`юз Эсперант`истов, РоСЭ.
+
+[rim.] {[rimarko, rimarkigo]} примеч`ание.
+
+[rpk.] {[respondkupono]} респ`ондкуп`он, куп`он для отв`ета.
+
+[s-ano@san.0o] {[samideano]} едином`ышленник.
+
+[SAT] {[Sennacieca Asocio Tutmonda]} Вненацион`альная всем`ирная ассоци`ация.
+
+[s.d.] {[sen dato]} без указ`ания д`аты _(времени издания)_.
+
+[s.-d.]
+ # {[social-demokrato]} соци`ал-демокр`ат;
+ # {[social-demokrata]} соци`ал-демократический.
+
+[SEJM] {[Sovetia Esperantista Junulara Movado]} _ист._ Сов`етское Молодёжное Движ`ение Эсперант`истов.
+
+[sekr.] {[sekretario]} секрет`арь.
+
+[Sept.] {[septembro]} сент`ябрь.
+
+[s-ino@sinjor.0ino] {[sinjorino]} госпож`а.
+
+[sl.] {[samloke]} там же.
+
+[s.l.k.d., s.l.k.j.] {[sen loko kaj dato, sen loko kaj jaro]} без указ`ания м`еста и г`ода изд`ания.
+
+[s.n.s.@se.0kajnur0] {[se kaj nur se]} _мат._ `если и т`олько `если.
+
+[soc.]
+ # {[socialisto]} социал`ист;
+ # {[socialista]} социалист`ический.
+
+[s-ro@sinjor.html#sinjor.0o] {[sinjoro]} господ`ин.
+
+[St.] {[Sankta]} свят`ой.
+
+[s-ta] {[sankta]} свят`ой.
+
+[STELO@stel.0o] {[Studenta Tutmonda Esperantista Ligo]} Всем`ирная студ`енческая эспер`антская л`ига.
+
+[str.] {[strato]} `улица.
+
+[t.e.] {[tio estas]} т`о есть.
+
+[TEJO] {[Tutmonda Esperantista Junulara Organizo]} Всем`ирная эспер`антская молодёжная организ`ация.
+
+[TEJxA] {[Tutmonda Esperantista Jxurnalista Asocio]} Всем`ирная эспер`антская ассоци`ация журнал`истов.
+
+[tel.] {[telefonnumero]} телеф`онный н`омер.
+
+[t.n.] {[tiel nomata]} так назыв`аемый.
+
+[trad.]
+ # {[tradukita]} переведен`о;
+ # {[tradukinto]} перев`одчик.
+
+[TTT@ttt.0] {[Tut-Tera Teksajxo]} _инф._ Всем`ирная Паут`ина (WWW);
+[~ej/o] _инф._ веб-сайт.
+
+[UEA] {[Universala Esperanto-Asocio]} Все`общая (_или_ Универс`альная) эспер`анто-ассоци`ация.
+
+[UK@kongre1.universala0o] {[Universala Kongreso]} Всем`ирный конгр`есс эспер`анто.
+
+[UL@ul.0] {[Universala Ligo]} Универс`альная л`ига.
+
+[UMEA] {[Universala Medicina Esperanto-Asocio]} Все`общая медиц`инская эспер`антская ассоци`ация.
+
+[UNESKO, Unesko] {[Unuigxintaj Nacioj por Edukado, Scienco kaj Kulturo]} Междунар`одная организ`ация по вопр`осам просвещ`ения, на`уки и культ`уры (Юнеско).
+
+[univ. prof.] {[universitata profesoro]} проф`ессор университ`ета.
+
+[UNO, UN] {[Unuigxintaj Nacioj]} Организ`ация Объединённых Н`аций, ООН.
+
+[US, USA, Usono] {[Unuigxintaj Sxtatoj de Norda Ameriko]} _назв._ Соединённые Шт`аты Ам`ерики, США.
+
+[USSR] {[Unio de Sovetaj Socialismaj Respublikoj]} _ист._ _назв._ Со`юз Сов`етских Социалист`ических Респ`ублик, СССР.
+
+[UV] {["Universala Vortaro"]} "Универс`альный слов`арь".
+
+[vd.] {[vidu]} смотр`и.
+
+[VD, v.d. II] {[vicdelegito]} замест`итель делег`ата, замест`итель уполном`оченного.
+
+[vol.] {[volumo]} том.
+
+[Z.] {[Zamenhof]} Заменг`оф.

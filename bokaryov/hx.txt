@@ -1,0 +1,115 @@
+[*Hx, *hxo] _название 11-ой буквы эсперантского алфавита_.
+
+[Hxabarovsk|o] _назв._ _г._ Хаб`аровск.
+
+[Hxakas|i/o, Hxakas|uj/o] _назв._ Хак`ассия.
+
+[hxalat|o@hxalat.0o] хал`ат.
+
+[hxalif|o@hxalif.0o] = <kalifo>.
+
+[Hxam|o@hxam.Hx0o] _библ._ Хам;
+[hx\~id|o@hxam.0ido] хам`ит; {[~aj lingvoj] _яз._ хам`итские язык`и}.
+
+[hxameleon|o@hxamel.0o] _зоол._ хамеле`он _(тж. перен.)_ (= <kameleono>);
+[Hx\~o] _астр._ Хамеле`он _(созвездие)_.
+
+[hxamemor|o@hxamemor.0o] _бот._ мор`ошка (= <kamemoro>).
+
+[hxamsin|o@hxamsin.0o] хамс`ин _(ветер)_.
+
+[hxan|o@hxan.0o] _ист., пол._ хан; {[~o Batu] _ист. личн._ хан Бат`ый};
+[~a] х`анский;
+[~uj/o@hxan.0ujo] _ист., пол._ х`анство, каган`ат, ц`арство;
+{[Hxazara ~ujo] _ист._ Хаз`арский каган`ат;
+[Kazana ~ujo] _ист._ К`азанское х`анство, Каз`анское ц`арство}.
+
+[hxan/land|o] _ист., пол._ х`анство (= <hxanujo>).
+
+[hxant|o@hxant.0o] _нац._ х`анты.
+
+[hxanuk|o@hxanuk.0o] _рел._ х`анука.
+
+[*hxaos|o@hxaos.0o] ха`ос (= <kaoso>);
+[~a@hxaos.0a] хаот`ический;
+[~ig/i@hxaos.0igi] дезорганизов`ать.
+
+[hxaradri|o@hxarad.0o] _орн._ зуёк, рж`анка (= <karadrio>);
+[~ed/o/j@hxarad1.0oj] _орн._ рж`анки, рж`анковые _(семейство Charadriidae)_;
+[~o/form/a/j@hxarad.0oformaj] _орн._ ржанкообр`азные _(отряд Charadriiformes)_.
+
+[Hxarkov|o@hxarkov.0o] _назв._ _г._ Х`арьков.
+
+[hxasid|o@hxasid.0o] _рел._ хас`ид;
+[~ism/o@hxasid.0ismo] _рел._ хасид`изм.
+
+[hxat|o] х`ата.
+
+[*hxemi|o@hxemi.0o] х`имия (= <kemio>);
+[~a@hxemi.0a] хим`ический;
+[~ajx/o@hxemi.0ajxo] химик`алий, хим`ическое веществ`о;
+[~ist/o] х`имик.
+
+[Hxeops|o@hxeops.0o] _личн._ Хе`опс _(древнеегипетский фараон)_ (= <Keopso>).
+
+[hxi@hxi1.0] _название греческой буквы_ хи.
+
+[Hxi|o@hxi2.0o] _назв._ _остров_ Х`иос.
+
+[hxil|o@hxil.0o] => <cxilo>.
+
+[hxim|o@hxim.0o] _биол., мед._ х`имус.
+
+[*hximer|o@hximer.0o] хим`ера (= <kimero>);
+[~a] химер`ический.
+
+[hxin|o@hxin.0o] :( _уст._ кит`аец (=> <cxino>);
+[~a] кит`айский.
+
+[hxinin|o@hxinin.0o] _мед._ хин`ин (= <kinino>).
+
+[hxiromanci|o] хиром`антия (= <kiromancio>).
+
+[*hxirurg|o@hxirurg.0o] хир`ург (= <kirurgo>).
+
+[*hxirurgi|o@hxirur.0o] хирург`ия (= <kirurgio>);
+[~a] хирург`ический;
+[~ist/o@hxirur.0isto] = <hxirurgo>, <kirurgo>.
+
+[hxitin|o@hxitin.0o] _хим., биол._ хит`ин.
+
+[hxiton|o] _ист._ хит`он.
+
+[hxlamid|o] _ист._ хлам`ида (= <klamido>).
+
+[hxmer|o] _нац._ кхмер;
+[~a] кхм`ерский.
+
+[hxolecist|o] _анат._ жёлчный пуз`ырь (= <kolecisto>, <galveziko>);
+[~it/o@hxolecistit.0o] _мед._ холецист`ит.
+
+[*hxoler|o@hxoler.0o] _мед._ хол`ера.
+
+[hxolerik|a] раздраж`ительный, жёлчный, холер`ический (= <kolerika>);
+[~ul/o] хол`ерик.
+
+[hxolesterol|o] _хим., физиол._ холестер`ин (= <kolesterolo>).
+
+[*hxor|o@hxor.0o] хор;
+[~a] хоров`ой;
+[~e] х`ором;
+[~ajx/o@hxor.0ajxo] хор _(музыкальное произведение)_;
+[~an/o@hxor.0ano] хор`ист; _церк._ п`евчий;
+[~ej/o@hxor.0ejo] _церк._ кл`ирос, х`оры;
+[~estr/o@hxor.0estro] хорм`ейстер, р`егент.
+
+[hxoral|o@hxoral.0o] _муз., рел._ хор`ал.
+
+[hxord|o@hxord.0o] _анат., геом._ х`орда;
+[~ul/oj@hxord.0uloj] _зоол._ х`ордовые.
+
+[hxore|o@hxore.0o] _мед._ хор`ея, в`иттова пл`яска.
+
+[hxot|o] х`ота _(танец)_.
+
+[hxromat|a] хромат`ический _(о цвете, звуке)_ (= <kromata>).

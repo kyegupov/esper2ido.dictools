@@ -1,0 +1,626 @@
+[*Cx, *cxo] _название 4-ой буквы эсперантского алфавита_.
+
+[cxabrak|o@cxabra.0] чепр`ак.
+
+[Cxad|o] _назв._ _г-во, озеро_ Чад.
+
+[cxador|o@cxador.0o] чадр`а.
+
+[*cxagren|i@cxagre.0i] _vt_ огорч`ать; раздраж`ать, досажд`ать;
+[~a@cxagre.0a] дос`адный;
+[~o@cxagre.0igxo] дос`ада; огорч`ение; {[kia ~o!] как`ая дос`ада!};
+[~igx/i@cxagre.0igxi] огорч`иться, дос`адовать.
+
+[cxagrin|o] шагр`ень; {[~a ledo] шагр`еневая к`ожа}.
+
+[cxak|o@cxak.0o] к`ивер.
+
+[cxakr|o@cxakr.0o] ч`акра.
+
+[cxalazi|o] _мед._ ячм`ень (= <kalazio>).
+
+[cxalet|o] шал`е _(домик в горах)_.
+
+[*cxam|o@cxam.0o] _зоол._ с`ерна.
+
+[*cxambelan|o@cxambe.0o] _ист._ камерг`ер.
+
+[*cxambr|o@cxambr.0o]
+ # к`омната;
+ # пал`ата; {[komerca ~o] торг`овая пал`ата; [~o de deputitoj] пал`ата депут`атов; [~o de masxinoj] маш`инное отдел`ение};
+[~ar/o] анфил`ада;
+[~eg/o] зал;
+[~ist/o@cxambr.0isto] слуг`а, камерд`инер;
+[~ist/in/o@cxambr.0istino] г`орничная.
+
+[cxambr/o/muzik|o] к`амерная м`узыка.
+
+[cxambr/o/plant|o] к`омнатное раст`ение.
+
+[cxamot|o] _стр._ шам`от.
+
+[*cxampan|o@cxampa.0o] шамп`анское _(вино)_.
+
+[Cxampanj|o] _назв._ Шамп`ань.
+
+[cxampinjon|o@cxampinjon.0o] _бот._ шампинь`он.
+
+[cxampion|o@cxampi.0o]
+ # чемпи`он;
+ # _уст._ поб`орник, защ`итник;
+[~ec/o] зв`ание чемпи`она.
+
+[*cxan|o@cxan.0o]
+ # кур`ок;
+ # _тех._ ст`опор.
+
+[cxant|o]
+ # _церк._ п`ение псалм`ов;
+ # _перен._ монот`онное п`ение;
+[~ist/o] псал`омщик.
+
+[cxantagx|o] шант`аж;
+[~i@cxanta.0i] _vt_ вымог`ать, шантаж`ировать;
+[~ist/o] шантаж`ист, вымог`атель.
+
+[*cxap|o@cxap.0o]
+ # ш`апка, колп`ак, чеп`ец, шл`ем _(вообще головной убор без полей и козырька)_;
+ {[vaska ~o] бер`ет; [~o de maristo] бескоз`ырка};
+ # колпач`ок _(колеса автомашины, авторучки, бутылки и т.п.)_;
+[~et/o] ш`апочка.
+
+[*cxapel|o@cxapel.0o]
+ # шл`япа _(головной убор с полями)_;
+ # шл`япка гриб`а;
+ # = <cirkumflekso>;
+[~ist/o@cxapel.0isto] шл`япник;
+[~it/a] : {[~ita litero] _яз._ эспер`антская б`уква со "шл`япкой"}.
+
+[*cxapitr|o@cxapit.0o] глав`а _(книги)_.
+
+[cxap/o/bek/o@bek.cxapo0o, cxap/sxirm|o] козырёк.
+
+[*cxar@cxar.0] _союз_ так как, потом`у что, `ибо.
+
+[*cxar|o@cxar1.0o]
+ # пов`озка, тел`ега, воз; колесн`ица; двук`олка;
+ {[funebra ~o] похор`онная колесн`ица; [kuira ~o] _воен._ пох`одная к`ухня};
+ # ход _(ось с п`арой колёс)_;
+[~et/o@cxar1.0eto]
+ # тел`ежка, т`ачка;
+ # кар`етка _(пишущей машинки)_;
+[~ist/o] возн`ица, возн`ичий;
+[Cx\~ist/o] _астр._ Возн`ичий _(созвездие)_ (=> <Kocxero>).
+
+[cxardasx|o] _муз._ ч`ардаш _(танец)_.
+
+[cxarel|o] _нов._ _трансп._ тел`ежка с подъёмником, (авто)погр`узчик.
+
+[*cxarlatan|o@cxarla.0o] шарлат`ан;
+[~a] шарлат`анский, надув`ательский;
+[~ajx/o] шарлат`анство.
+
+[*cxarm|a@cxarm.0a] м`илый, прел`естный, очаров`ательный, чар`ующий; привлек`ательный; сл`авный, хор`ошенький;
+[~i@cxarm.0i] _vt_ очар`овывать, чаров`ать, плен`ять; умил`ять;
+[~o@cxarm.0o] пр`елесть; привлек`ательность; очаров`ание, оба`яние;
+[~o/j] пр`елести;
+[~ul/o] очаров`ательный челов`ек;
+[~ul/in/o] чаровн`ица, прел`естница, м`илочка.
+
+[*cxarnir|o@cxarni.0o] _тех._
+ # шарн`ир;
+ # стык.
+
+[*cxarpent|i@cxarpe.0i] _vt_ пл`отничать; {[~i domon] сруб`ить дом};
+[~ajx/o@cxarpe.0ajxo] пл`отницкая раб`ота;
+[*~ist/o@cxarpe.0isto] пл`отник.
+
+[*cxarpi|o@cxarpi.0o] _мед._ к`орпия.
+
+[cxart|o@cxart.0o]
+ # х`артия, гр`амота;
+ # _ком._ контр`акт на ар`енду, ч`артер.
+
+[cxar/um|o@cxar1.0umo] т`ачка (= <cxareto>).
+
+[*cxas|i@cxas.0i] _vt_ ох`отиться, пресл`едовать;
+[~(ad)/o] ох`ота;
+[*~ajx/o@cxas.0ajxo] дичь; ох`отничья доб`ыча;
+[~ej/o] ох`отничье хоз`яйство; ох`отничьи уг`одья;
+[~ist/o@cxas.0isto] ох`отник.
+
+[cxas/akir|i] доб`ыть _(на охоте)_.
+
+[cxas/avi|o, cxas/aviad/il|o] _ав._ истреб`итель.
+
+[cxas/hund|o@cxas.0hundo] ох`отничья соб`ака;
+[Cx\~o/j] _астр._ Г`ончие Псы _(созвездие)_.
+
+[cxasi|o@cxasi.0o] _тех._ шасс`и.
+
+[cxas/korn|o@korn.cxas0o] ох`отничий рог.
+
+[cxas/leopard|o] => <gepardo>.
+
+[cxas/o/sak|o] ягдт`аш.
+
+[cxas/pel/ant|o] заг`онщик.
+
+[*cxast|a@cxast.0a] целом`удренный, нев`инный, непор`очный;
+[~ec/o] целом`удренность, нев`инность, непор`очность.
+
+[*cxe@cxe.0] _предл._ у, при;
+{[sidi ~ tablo] сид`еть у стол`а, за стол`ом; [sidi ~ fajro] сид`еть у огн`я;
+[logxi ~ la gepatroj] жить у род`ителей; [~ la sunsubiro] при зак`ате с`олнца;
+[~ lia alveno] при ег`о прих`оде; [~ fermitaj fenestroj] при закр`ытых `окнах}.
+
+[cxe/brust|o] п`азуха (= <sino>).
+
+[cxecxen|o] _нац._ чеч`енец;
+[~a] чеч`енский.
+
+[Cxecxen|i/o, Cxecxen|uj/o] _назв._ Чечн`я.
+
+[cxe/est|i@est.cxe0i] _vn, vt_ прис`утствовать;
+[~o] прис`утствие;
+[~ant/o] прис`утствующий _(сущ.)_.
+
+[*cxef|a@cxef.0a] гл`авный, ст`арший, в`ысший; основн`ой; вед`ущий; реш`ающий;
+[*~o@cxef.0o]
+ # вождь, глав`а;
+ # нач`альник, шеф, босс, зав`едующий (= <estro>);
+[~i@cxef.0i] _vn_ глав`енствовать; п`ервенствовать;
+[~e@cxef.0e] гл`авным `образом; пр`ежде всег`о (= <precipe>).
+
+[cxef/angxel|o] _рел._ арх`ангел (= <arkiangxelo>).
+
+[cxef/artikol|o] передов`ица, передов`ая стать`я.
+
+[*cxef/episkop|o@episko.cxef0o] _рел._ архиеп`ископ (= <arkiepiskopo>).
+
+[cxef/general|o@genera1.cxef0o] _воен._ генерал`иссимус (= <generalisimo>).
+
+[cxef/ingxenier|o] гл`авный инжен`ер.
+
+[cxef/jard|o] _мор._ гр`ота-рей.
+
+[cxef/komand/ant|o] _воен._ главноком`андующий.
+
+[cxef/mast|o@mast.cxef0o] _мор._ грот-м`ачта (= <grandmasto>).
+
+[cxef/ministr|o@minist1.cxef0o] премь`ер-мин`истр, глав`а кабин`ета мин`истров.
+
+[cxef/redaktor|o@redakt1.cxef0o] гл`авный ред`актор.
+
+[cxef/rol/ul|o] _иск._ гл`авное д`ействующее лиц`о, гл`авный гер`ой (= <protagonisto>).
+
+[cxef/sergxent|o] _воен._ ст`арший серж`ант.
+
+[cxef/urb|o@urb.cxef0o] стол`ица.
+
+[cxef/vel|o@vel.cxef0o] _мор._ грот _(парус)_ (= <grandvelo>).
+
+[cxef/verk|o@verk.cxef0o] _иск._ шед`евр.
+
+[cxehx|o] _нац._ чех;
+[~a] ч`ешский.
+
+[Cxehx|i/o@cxehxi.0o, Cxehx|uj/o] _назв._ Ч`ехия.
+
+[*cxek|o@cxek.0o] чек;
+[~ar/o@cxek.0aro] ч`ековая кн`ижка.
+
+[cxek/libr|o] ч`ековая кн`ижка (= <cxekaro>).
+
+[*cxel|o@cxel.0o]
+ # _биол._ кл`етка;
+ # _шах._ кл`етка, п`оле _(на шахматной доске)_;
+ # яч`ейка _(в сотах)_;
+ # яч`ейка _(первичная организация)_;
+ # чул`ан;
+ # к`арцер; к`амера _(в тюрьме)_; к`елья _(в монастыре)_;
+ # _тех._ кор`обка; к`амера; отс`ек;
+[~a] кл`еточный, кл`етчатый; яч`еечный, яч`еистый;
+[~ar/o@cxel.0aro]
+ # с`оты;
+ # с`еть _(организаций)_.
+
+[cxe/man|e] на рук`ах, в рук`ах, под рук`ами.
+
+[cxement|o]
+ # _анат._ зубн`ой цем`ент;
+ # _тех._ цемент`ирующий порош`ок;
+[~i] _vt_ _тех._ цемент`ировать _(сталь)_;
+[~ad/o] _тех._ цемент`ация.
+
+[*cxemiz|o@cxemiz.0o] руб`ашка, сор`очка.
+
+[*cxen|o@cxen.0o]
+ # _прям., перен._ цепь, цеп`очка;
+ # _инф._ строк`а, цеп`очка (= litercxeno);
+[~i@cxen.0i] _vt_ посад`ить на цепь; _перен._ сков`ать; {[~ita hundo] цепн`ой пёс};
+[~er/o@cxen.0ero] звен`о _(цепи)_.
+
+[cxen/hund|o] сторожев`ая, цепн`ая соб`ака.
+
+[cxenil|o] син`ель, позум`ент, гал`ун, уз`орная тесьм`а.
+
+[cxen/reakci|o] _хим., яд.физ._ цепн`ая ре`акция.
+
+[cxen/stabl|o] _тех._ конв`ейер.
+
+[*cxeriz|o@cxeriz.0o] в`ишня _(плод)_; [dolcxa ~o] чер`ешня (= <merizo>);
+[~ej/o] вишнёвый сад;
+[~uj/o@cxeriz.0ujo] = <cxerizarbo>.
+
+[cxeriz/arb|o] _бот._ в`ишня, вишнёвое д`ерево.
+
+[cxeriz/likvor|o] вишнёвка, вишнёвая нал`ивка.
+
+[*cxerk|o@cxerk.0o] гроб;
+[~a@cxerk.0a] гробов`ой; {[~a tono] гробов`ой г`олос};
+[~ist/o] гробовщ`ик.
+
+[cxerkes|o@cxerkes.0o] _нац._ черк`ес.
+
+[cxerk/vetur/il|o@cxerk.0veturilo] катаф`алк (= <katafalko>).
+
+[*cxerp|i@cxerp.0i] _vt_ ч`ерпать; извлек`ать;
+{[~i akvon el fonto] ч`ерпать в`оду из ист`очника;
+[~i librojn el la biblioteko] извлек`ать (_или_ ч`ерпать) кн`иги из библиот`еки};
+[~il/o] черп`ак, к`овшик, пол`овник.
+
+[cxervonc|o] _ден.ед._ черв`онец.
+
+[*cxes|i@cxes.0i] _vn +i_ перест`ать, прекрат`иться; останов`иться; отст`ать;
+{[la pluvo ~is] дождь перест`ал; [li ~is paroli] он перест`ал говор`ить};
+[~o] прекращ`ение; {[sen ~o] без перер`ыва, безостан`овочно};
+[~ig/i@cxes.0igi] _vt_ прекрат`ить, прерв`ать, прес`ечь;
+{[la laboristo ~igis sian laboron] раб`отник прекрат`ил сво`ю раб`оту;
+[la vento ~igis la pluvon] в`етер прекрат`ил дождь;
+[~igu la babiladon!] прекрат`ите болтовн`ю!}.
+
+[*cxeval|o@cxeval.0o] _зоол._ л`ошадь _(вообще, без указания пола)_, конь;
+[~ed/o/j@cxeval1.0oj] _зоол._ лошад`иные, л`ошади _(семейство Equidae)_;
+[~acx/o] кл`яча;
+[~ajx/o] кон`ина (= <cxevalviando>);
+[~ej/o] кон`юшня;
+[~et/o@cxeval.0eto]
+ # лош`адка; п`они (= <poneo>);
+ # _перен._ конёк, п`унктик;
+[Cx\~et/o] _астр._ Жеребёнок _(созвездие)_;
+[~id/o] жеребёнок;
+[~in/o] коб`ыла;
+[~ist/o] к`онюх.
+
+[cxeval/blek|i] _vn_ ржать (= <heni>).
+
+[cxeval/ir|o] _шахм._ ход конём.
+
+[cxeval/konkurs|o] бег`а.
+
+[cxeval/kovr/il|o] поп`она.
+
+[cxeval/pov|o@cxeval.0povo] _тех._ _ед.изм._ лошад`иная с`ила.
+
+[cxeval/stal|o] кон`юшня (= <cxevalejo>).
+
+[cxeval/tri|o] тр`ойка _(лошад`ей)_.
+
+[cxeval/viand|o] кон`ина (= <cxevalajxo>).
+
+[cxeval/vir|o]
+ # кент`авр (=> <centauxro>);
+ # жереб`ец (=> <vircxevalo>).
+
+[cxeval/zon|o] подбр`юшный рем`ень _(в конской упряжи)_.
+
+[*cxevron|o@cxevro.0o] _стр._ строп`ило;
+[~a] строп`ильный;
+[~ar/o] _стр._ строп`ильная ф`ерма.
+
+[*cxi@cxi.0]
+ # _частица, обозначающая близость:_
+ {[tiu] тот; [tiu ~, ~ tiu] `этот; [tie] там; [tie ~, ~ tie] здесь};
+ # _может использоваться в качестве приставки:_
+ {[~-foje] на `этот раз; [~-suba] нижесл`едующий; [~-rilate] в `этом отнош`ении};
+ # _редк._ _используется в поэзии в значении_ tiu(j) _или_ tiu(j) cxi: {[cxi barbuloj] `эти бородач`и}.
+
+[*cxia@cxia.0] вс`який, вс`яческий;
+
+[*cxial@cxial.0] по вс`якой прич`ине, с люб`ой ц`елью.
+
+[*cxiam@cxiam.0] всегд`а; {[por ~] навсегд`а};
+[~a@cxiam.0a] всегд`ашний, посто`янный, об`ычный;
+[~ul/o] завсегд`атай.
+
+[cxia/spec|a] всевозм`ожный.
+
+[cxibuk|o] чуб`ук _(трубка)_.
+
+[cxicxeron|o@cxicxe.0o] экскурсов`од, проводн`ик, чичер`оне.
+
+[*cxie@cxie.0] везд`е; вс`юду;
+[~a] повсем`естный; вездес`ущий; все`общий.
+
+[*cxiel@cxiel.0] вс`ячески, по-вс`якому, на все лад`ы.
+
+[*cxiel|o@cxiel1.0o] н`ебо; небес`а; {[sub la libera ~o] на св`ежем в`оздухе};
+[~a] неб`есный;
+[~an/o, ~ul/o] небож`итель.
+
+[*cxiel/ark|o@ark.cxiel0o] р`адуга.
+
+[cxiel/blu|a] неб`есно-голуб`ой (= <lazura>).
+
+[*cxiel/ir|o@cxiel1.0iro] _рел._ вознес`ение.
+
+[cxiel/rugx|o] зар`я (= <auxroro>).
+
+[cxiel/skrap/ant|o@skrap.cxiel0antonub0ajxo] небоскрёб.
+
+[*cxies@cxies.0] `общий, принадлеж`ащий к`аждому; {[en ~ cxeesto] в прис`утствии всех, при всех};
+[~ul/in/o] публ`ичная ж`енщина.
+
+[*cxif|i@cxif.0i] _vt_ мять, тереб`ить, к`омкать;
+[~ajx/o@cxif.0ajxo] ком`ок.
+
+[cxifcxaf|o] _орн._ п`еночка-теньк`овка.
+
+[*cxifon|o@cxifon.0o] тр`япка, лоск`ут;
+[~ajx/o] в`етошь;
+[~igx/i] износ`иться, истреп`аться _(об одежде)_;
+[~ist/o@cxifon.0isto] тряп`ичник;
+[~ul/o@cxifon.0ulo] оборв`анец.
+
+[*cxifr|o@cxifr.0o] шифр;
+[~i@cxifr.0i] _vt_ зашифров`ать;
+[~ajx/o] шифр`овка _(текст)_;
+[~ist/o] шифров`альщик.
+
+[Cxikag|o] _назв._ _г._ Чик`аго.
+
+[*cxikan|i@cxikan.0i] _vt_
+ # придир`аться _(к пустякам)_; чин`ить пом`ехи, затрудн`ения;
+ # сут`яжничать; крючкотв`орствовать;
+ # _уст._ спл`етничать;
+[~o] прид`ирка;
+[~em/a] прид`ирчивый;
+[~em/ul/o]
+ # прид`ира;
+ # сут`яга; крючкотв`ор.
+
+[cxil|o@cxil.0o] _физиол._ х`илус, мл`ечный сок (= <hxilo>).
+
+[Cxili|o@cxili.0o] _назв._ Ч`или;
+[cx\~a] чил`ийский;
+[cx\~an/o] _нац._ чил`иец.
+
+[cxim|o@cxim.0o] _физиол._ х`имус, содерж`имое т`онких киш`ок (= <hximo>).
+
+[cximozin|o] _хим._ химоз`ин, сыч`ужный ферм`ент (= <hximozino>).
+
+[cximpanz|o@cximpa.0o] _зоол._ шимпанз`е.
+
+[cxin|o@cxin.0o] _нац._ кит`аец;
+[~a] кит`айский.
+
+[Cxin|i/o, Cxin|uj/o] _назв._ Кит`ай.
+
+[cxincxil|o@cxincxil.0o] _зоол._ шинш`илла.
+
+[Cxingis|o@cxingis.0o]
+ # _имя_ Чинг`из;
+ # _личн._ Чингисх`ан, Чинг`из-хан (= <Cxingishxano>);
+[~id/o@cxingis.0ido] _ист._ Чингиз`ид _(потомок Чингис-хана)_.
+
+[Cxingis/hxan|o@cxingis.0hxano] _личн._ Чингисх`ан, Чинг`из-хан.
+
+[*cxio@cxio.0] всё; {[ne ~ brilanta estas diamanto] _посл._ не всё то з`олото, что блест`ит}.
+
+[*cxiom@cxiom.0] всё, целик`ом _(о количестве)_;
+[~a@cxiom.0a] весь (_целиком;_ = tutkvanta, tutplena).
+
+[cxio/pov|a@pov.cxio0a] всемог`ущий.
+
+[cxio/sci|a] всезн`ающий, всев`едущий.
+
+[cxio/vend/ej|o@vend.cxio0ejo] универм`аг, суперм`аркет.
+
+[cxio/vid|a] всев`идящий.
+
+[cxio/vor|a] все`ядный.
+
+[cxip|a] _редк._ дешёвый (=> <malmultekosta>, malaltpreza).
+
+[cxips|o/j@cxips.0o] _кул._ ч`ипсы (= <terpomflokoj>).
+
+[cxir|o@cxir.0o] _бот._ `усик.
+
+[*cxirkaux@cxirka] _предлог_ вокр`уг, круг`ом; `около _(приблизительно)_;
+[~a@cxirka.0a] окруж`ающий; окр`естный; окр`ужный _(уст.)_;
+[~e@cxirka.0e] _нареч._ круг`ом;
+[*~i@cxirka.0i] _vt_ окруж`ать _(собой)_;
+[~ig/i@cxirka.0igi] _vt_ окруж`ать, окруж`ить _(чем-л.)_;
+[*~o@cxirka.0ejo0o] окруж`ение, сред`а;
+[*~ajx/o@cxirka.0ajxo] окруж`ение, окр`естность.
+
+[cxirkaux/bar|i@bar.cxirkaux0i] _vt_ оград`ить, огород`ить _(со всех сторон)_.
+
+[cxirkaux/brak|i@brak.cxirkaux0ien0igibrakumi] _vt_ обн`ять, обхват`ить.
+
+[cxirkaux/brul|i@brul.cxirkaux0i] _vn_ обгор`еть _(со всех сторон)_;
+[~ig/i] обж`ечь _(со всех сторон)_.
+
+[cxirkaux/cxiz|i@cxiz.cxirkaux0i] _vt_ обточ`ить, обструг`ать.
+
+[cxirkaux/desegn|i] _vt_ очерт`ить.
+
+[cxirkaux/flar|i@flar.cxirkaux0i] _vt_ обн`юхать.
+
+[cxirkaux/flu|i] _vt_ обтек`ать, омыв`ать _(вокруг)_.
+
+[cxirkaux/flug|i@flug.cxirkaux0i] _vt_ облет`еть;
+[~o] облёт.
+
+[cxirkaux/forgx|i] _vt_ обков`ать _(вокруг, по краям)_.
+
+[cxirkaux/fos|i@fos.cxirkaux0i] _vt_ обкоп`ать.
+
+[cxirkaux/glu|i@glu.cxirkaux0i] _vt_ обкл`еить _(вокруг)_.
+
+[cxirkaux/hak|i@hak.cxirkaux0i] _vt_ обруб`ить.
+
+[cxirkaux/ir|i@ir.cxirkaux0i] _vt_ обойт`и (= <cxirkauxpasi>).
+
+[cxirkaux/kol|o@kol.cxirkaux0o]
+ # ош`ейник (= <kolringo>);
+ # ожер`елье (= <koliero>).
+
+[cxirkaux/konduk|i] _vt_ обвест`и.
+
+[cxirkaux/kovr|i@kovr.cxirkaux0i] _vt_ оберн`уть, ук`утать;
+[~il/o, ~ajx/o] обёртка (= <banderolo>).
+
+[cxirkaux/kracx|i] _vt_ оплев`ать.
+
+[cxirkaux/kudr|i@kudr.cxirkaux0i] _vt_ обш`ить _(все края)_.
+
+[cxirkaux/kur|i@kur.cxirkaux0i] _vt_ обеж`ать _(вокруг чего-л.)_.
+
+[cxirkaux/lav|i@lav.cxirkaux0i] _vt_ обм`ыть, ом`ыть _(со всех сторон)_.
+
+[cxirkaux/lig|i@lig.cxirkaux0i] _vt_ обвяз`ать.
+
+[cxirkaux/lini|i] _vt_ очерт`ить, обвест`и л`инией.
+
+[*cxirkaux/man|o@man.cxirkaux0o] брасл`ет (= <braceleto>).
+
+[cxirkaux/met|i@met.cxirkaux0i] _vt_ облож`ить, обст`авить _(со всех сторон)_;
+[~ajx/o] обкл`адка.
+
+[cxirkaux/mezur|i] _vt_ обм`ерить _(участок и т.п.)_.
+
+[cxirkaux/mond|a] кругосв`етный; {[~a vojagxo] кругосв`етное путеш`ествие}.
+
+[cxirkaux/mord|i@mord.cxirkaux0i] _vt_ обкус`ать.
+
+[cxirkaux/pas|i] _vt_ обойт`и _(вокруг чего-л.)_.
+
+[cxirkaux/pasx|i] _vt_ :( обойт`и, обступ`ить _(со всех сторон)_.
+
+[cxirkaux/plant|i] _vt_ обсад`ить _(кустами и т.п.)_.
+
+[cxirkaux/plekt|i] _vt_ оплест`и.
+
+[*cxirkaux/pren|i@pren.cxirkaux0i] _vt_ обхват`ить, обн`ять (= <brakumi>).
+
+[cxirkaux/rigard|i@rigard.cxirkaux0i] _vt_ огляд`еть, осмотр`еть _(со всех сторон)_.
+
+[*cxirkaux/skrib|i@skrib.cxirkaux0i] _vt_
+ # огран`ичить _(тему и т.п.)_;
+ # _геом._ опис`ать _(геом. фигуру вокруг другой)_;
+[~it/a@skrib.cxirkaux0ita] _геом._ оп`исанный _(о геом. фигуре)_.
+
+[cxirkaux/star|i@star.cxirkaux0i] _vt_ окруж`ать, сто`ять вокр`уг.
+
+[cxirkaux/sxmir|i@sxmir.cxirkaux0i] _vt_ обм`азать.
+
+[cxirkaux/sxut|i@sxut.cxirkaux0i] _vt_ обс`ыпать.
+
+[cxirkaux/trancx|i@trancx.cxirkaux0i] _vt_ обр`езать _(со всех сторон)_.
+
+[cxirkaux/um|i@cxirka.0umi.MIL] _vt_ _воен._ окруж`ить;
+[~o@cxirka.0umo.MIL] _воен._ окруж`ение.
+
+[cxirkaux/urb|o@urb.cxirkaux0o] окр`естности г`орода.
+
+[cxirkaux/versx|i@versx.cxirkaux0i] _vt_ обл`ить _(круг`ом)_, нал`ить вокр`уг.
+
+[cxirkaux/vetur|i@vetur.cxirkaux0i] _vt_ объ`ехать.
+
+[cxirkaux/voj|o@voj.cxirkaux0o] обх`од, кружн`ой, ок`ольный путь _(тж. перен.)_; {[fari ~on] сд`елать крюк};
+[~a] ок`ольный.
+
+[cxirkaux/volv|i@volv.cxirkaux0i] _vt_ обв`ить.
+
+[cxirkaux/zon|i@zon.cxirkaux0i] _vt_ опо`ясать (= <zoni>).
+
+[cxirp|i@cxirp.0i] _vn_ чир`икать, стрекот`ать, щебет`ать.
+
+[cxit!] _междом._ тсс!
+
+[*cxiu@cxiu.0] к`аждый, вс`який; {[~ vulpo sian voston lauxdas] _посл._ всяк кул`ик своё бол`ото хв`алит};
+[~j] все; {[~j forkuris, ~ al sia tendo] все разбеж`ались, к`аждый к сво`ей пал`атке}.
+
+[cxiu/dimancx|e] к`аждое воскрес`енье;
+[~a] ежевоскр`есный.
+
+[cxiu/foj|e@foj.cxiu0e] к`аждый раз, всегд`а.
+
+[cxiu/hor|e@hor.cxiu0e] ежеч`асно;
+[~a] ежеч`асный.
+
+[cxiu/jar|e] ежег`одно;
+[~a@jar.cxiu0a] ежег`одный.
+
+[cxiu/maten|e] к`аждое `утро.
+
+[cxiu/monat|e] ежем`есячно;
+[~a] ежем`есячный.
+
+[cxiu/okaz|e] во вс`яком сл`учае.
+
+[cxiu/pasx|e] на к`аждом шаг`у.
+
+[cxiu/semajn|e] еженед`ельно;
+[~a] еженед`ельный.
+
+[cxiu/spec|a] вс`яческий, разнообр`азный.
+
+[cxiu/tag|e] ежедн`евно;
+[~a@tag.cxiu0a] ежедн`евный;
+[~ec/a] б`удничный.
+
+[cxiu/temp|e] всегд`а (= <cxiam>).
+
+[*cxiz|i@cxiz.0i] _vt_ долб`ить _(долотом)_, руб`ить _(зубилом)_; р`езать _(по металлу, камню)_;
+[~il/o@cxiz.0ilo] долот`о, зуб`ило, рез`ец;
+[Cx\~il/o] _астр._ Рез`ец _(созвездие)_.
+
+[cxizoj|o] _тех._ н`ожницы для ж`ести.
+
+[*-cxj-@cxj.0] _суффикс для образования ласкательных существительных, относящихся к мужчине:_
+{[pacxjo] п`апа; [Pecxjo] П`етя}.
+
+[*cxokolad|o@cxokol.0o] _кул._ шокол`ад;
+[~a] шокол`адный.
+
+[cxokolad/brik|o] шокол`адный бат`ончик.
+
+[cxot|o@cxot.0o] _ихт._ подк`аменщик, быч`ок-рог`атка, широкол`обка;
+[~ed/o/j@cxoted.0oj] _ихт._ подк`аменщики, бычк`и-рог`атки _(семейство Cottidae)_.
+
+[*cxu@cxu.0] _вопросительная частица_ ли:
+{[~ vi vidis lin?] в`идели ли вы ег`о?
+[mi ne scias, ~ mi povos veni] не зн`аю, смог`у ли я прийт`и;
+[~?] р`азве? [~ vere?] неуж`ели?
+[~... ~...] _парный союз_ т`о ли... т`о ли...;
+[~ la vivan, ~ la mortan, (sed) mi trovos lin] жив`ого ли, мёртвого ли, (но) я отыщ`у ег`о}.
+
+[cxuk|o] _тех._ патр`он _(в токарном или сверлильном станке)_.
+
+[cxukcx|o@cxukcx.0o] _нац._ ч`укча;
+[~a@cxukcx.0a] чук`отский.
+
+[(la) Cxukcx|a duoninsulo@cxukcx.Cx0aDuoninsulo] _назв._ Чук`отский полу`остров, Чук`отка;
+[(la) ~a maro@cxukcx.Cx0aMaro] _назв._ Чук`отское м`оре.
+
+[cxur|o] _груб._ сп`ерма (= homa <spermo>).
+
+[cxur/ov|o/j] => <testiko>.
+
+[cxuvasx|o] _нац._ чув`аш;
+[~a] чув`ашский.
+
+[Cxuvasx|i/o, Cxuvasx|uj/o] _назв._ Чув`ашия.
