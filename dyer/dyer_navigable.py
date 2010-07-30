@@ -24,7 +24,7 @@ prefix_tree = {}
 
 for title, idx in titles:
     current_node = prefix_tree
-    for i in range(4):
+    for i in range(6):
         prefix = title[:i+1]
         while len(prefix)<i+1:
             prefix += "_"
@@ -36,7 +36,7 @@ for title, idx in titles:
     
 c = 0
 
-pagesize = 70
+pagesize = 50
 
 def distribute(accum):
     weights = [min(e[1],pagesize) for e in accum]
@@ -116,8 +116,8 @@ sink_subdivs = StringIO()
         
 for letter in sorted(prefix_tree.keys()):
     c = 0
-    print >>sink_letters, """<b>%s</b> """ % letter
-    print >>sink_subdivs, """<br> """
+    print >>sink_letters, """<u><b class="letter">%s</b></u> """ % letter.upper()
+    print >>sink_subdivs, """<div class="subdivs" id="subdivs_%s" style="display:none">""" % letter
     subdivs = list(process_node(prefix_tree[letter]["kids"]))
     
     for entry in subdivs:
@@ -136,11 +136,22 @@ for letter in sorted(prefix_tree.keys()):
                 a = a.replace("<ex>","<i>").replace("</ex>","</i>")
                 print >>sink2, a+"<br>"
         sink2.close()
+    print >>sink_subdivs, """</div>"""
     print c
 
 
 out = open("navigable_dict/index_io.html", "wt")
+print >>out, """<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="jquery.tooltip.css" />
+
+<script src="jquery-1.4.2.min.js"></script>
+<script src="navigable_dict.js"></script>
+<body>"""
+
 print >>out, sink_letters.getvalue()
 print >>out, "<hr>"
 print >>out, sink_subdivs.getvalue()
 
+print >>out, "</body></html>"

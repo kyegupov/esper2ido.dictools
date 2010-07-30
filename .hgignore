@@ -1,4 +1,5 @@
 syntax: glob
 
-dyer/navigable_dict/*
+dyer/navigable_dict/*.html
+dyer/navigable_dict/io/*.html
 dyer/out.xml
