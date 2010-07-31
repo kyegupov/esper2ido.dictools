@@ -36,7 +36,7 @@ for title, idx in titles:
     
 c = 0
 
-pagesize = 50
+pagesize = 30
 
 def distribute(accum):
     weights = [min(e[1],pagesize) for e in accum]
@@ -76,7 +76,7 @@ def bruteforce_distribution(weights, max_pieces,  already, last_occupied):
         if sum(weights[last_occupied:i])>pagesize:
             break
         if already+1==max_pieces:
-            if sum(weights[i:])<pagesize:
+            if sum(weights[i:])<=pagesize:
                 yield [i]
         else:
             for residue in bruteforce_distribution(weights, max_pieces, already+1, i):
@@ -92,17 +92,14 @@ def process_node(node):
         if node[k]["count"]>pagesize and node[k]["kids"]:
             if accum:
                 for e in distribute(accum):
-                    c+=1
                     yield e
             for e in process_node(node[k]["kids"]):
-                c+=1
                 yield e
             accum = []
         else:
             accum.append((k,node[k]["count"]))
     if accum:
         for e in distribute(accum):
-            c+=1
             yield e
         
 try:
@@ -113,32 +110,52 @@ except:
 sink_letters = StringIO()
 sink_subdivs = StringIO()
 
+letters_in_row = 9
+subdivs_in_row = 2
         
-for letter in sorted(prefix_tree.keys()):
-    c = 0
-    print >>sink_letters, """<u><b class="letter">%s</b></u> """ % letter.upper()
-    print >>sink_subdivs, """<div class="subdivs" id="subdivs_%s" style="display:none">""" % letter
+for li,letter in enumerate(sorted(prefix_tree.keys())):
+    print >>sink_letters, """<td class="letter">%s</td> """ % letter.upper()
+    if li%letters_in_row == letters_in_row-1:
+        print >>sink_letters, """</tr><tr>"""   
+    print >>sink_subdivs, """<tbody class="subdivs" id="subdivs_%s" style="display:none"><tr>""" % letter
     subdivs = list(process_node(prefix_tree[letter]["kids"]))
     
-    for entry in subdivs:
-        name = entry[0].replace("_","")
-        start_end = name.split("-")
-        start = start_end[0]
-        end = start_end[1] if len(start_end)>1 else start
-        end = end+"zzzzzzzzz"
-        print >>sink_subdivs, """<a href="io/%s.html">%s</a> """ % (name, name)
-        
-        sink2 = codecs.open("navigable_dict/io/%s.html" % name, "wt", "utf-8")
-        for t,idx in titles:
-            if t>=start and t<=end:
-                a = articles[idx]
-                a = a.replace("<k>","<b>").replace("</k>","</b>")
-                a = a.replace("<ex>","<i>").replace("</ex>","</i>")
-                print >>sink2, a+"<br>"
-        sink2.close()
-    print >>sink_subdivs, """</div>"""
-    print c
+    
+    rows = int(math.ceil(1.0*len(subdivs)/subdivs_in_row))
+    for c0 in range(rows):
+        print >>sink_subdivs, """<tr>"""
 
+        for c1 in range(subdivs_in_row):
+            c = c1*rows+c0
+            try:
+                entry = subdivs[c]
+            except IndexError:
+                print >>sink_subdivs, """<td>&nbsp;</td>"""
+                continue
+            name = entry[0].replace("_","")
+            start_end = name.split("-")
+            start = start_end[0]
+            end = start_end[1] if len(start_end)>1 else start
+            end = end+"zzzzzzzzz"
+            print >>sink_subdivs, """<td><a target="content" href="io/%s.html">%s</a></td>""" % (name, name)
+
+                
+            #~ sink2 = codecs.open("navigable_dict/io/%s.html" % name, "wt", "utf-8")
+            #~ print >>sink2, """<html>
+                #~ <head>
+                #~ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                #~ <body>"""
+            #~ for t,idx in titles:
+                #~ if t>=start and t<=end:
+                    #~ a = articles[idx]
+                    #~ a = a.replace("<k>","<b>").replace("</k>","</b>")
+                    #~ a = a.replace("<ex>","<i>").replace("</ex>","</i>")
+                    #~ print >>sink2, a+"<br>"
+            #~ sink2.close()
+
+        print >>sink_subdivs, """</tr>"""
+        
+    print >>sink_subdivs, """</tr></tbody>"""
 
 out = open("navigable_dict/index_io.html", "wt")
 print >>out, """<html>
@@ -148,10 +165,13 @@ print >>out, """<html>
 
 <script src="jquery-1.4.2.min.js"></script>
 <script src="navigable_dict.js"></script>
-<body>"""
+<link rel="stylesheet" href="navigable_dict.css" />
+<body>
+<table width="100%" height="100%"><tr><td width="200" height="100%" valign="top">
 
-print >>out, sink_letters.getvalue()
-print >>out, "<hr>"
-print >>out, sink_subdivs.getvalue()
+"""
 
-print >>out, "</body></html>"
+print >>out, "<table><tr>"+sink_letters.getvalue()+"</tr></table>"
+print >>out, "<table><tr>"+sink_subdivs.getvalue()+"</tr></table>"
+
+print >>out, """</td><td><iframe name="content" src="about:blank" width="100%" height="100%"></td></tr></body></html>"""

@@ -1,0 +1,16 @@
+table, table td {
+    border-collapse:collapse;
+    border: 1px solid black;
+}
+
+.letter {
+    font-weight:bold;
+    text-decoration:underline;
+    width: 25px;
+    text-align:center;
+}
+
+.subdivs td {
+    font-size:small;
+    width: 95px;
+}
