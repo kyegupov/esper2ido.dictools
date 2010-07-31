@@ -123,14 +123,13 @@ class MyParser(HTMLParser):
             keys.append(" ".join(words2))
         
         wrapped = ", ".join(["<k>"+key.strip()+"</k>" for key in keys])
-        self.article += wrapped
+        self.article += wrapped+" "
         self.key = ""
         
           
     def save_article(self, end_of_entry):
 
-        
-        articles.append(self.article)
+        articles.append(self.article.replace("  "," "))
                 
         self.key = ""
         self.article = ""
@@ -143,7 +142,8 @@ sink = codecs.open("out.xml","wt","utf-8")
 print >>sink, """<xdxf lang_from="io" lang_to="en" format="l">"""
 
 
-for fn in glob.glob("i*.htm"):
+for fn in glob.glob("e*.htm"):
+    print fn
     p = MyParser()
     p.feed(open(fn).read().decode('latin-1'))
     

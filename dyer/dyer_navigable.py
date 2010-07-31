@@ -1,43 +1,6 @@
 import json,codecs,re,math,os
 from StringIO import StringIO
 
-dictionary = json.load(codecs.open("../../esper2ido/esper2ido/dicts/dyer.json", "rt", "utf-8"))
-
-articles = dictionary["articles"]
-
-re_pureword = re.compile("[a-z]+")
-
-titles = []
-
-
-for i,a in enumerate(articles):
-    ar = a.strip()[3:]
-    j = ar.index("<")
-    ar = ar[:j].lower()
-    mo = re_pureword.search(ar)
-    titles.append( (mo.group(), i) )
-    
-titles.sort(key=lambda x:x[0])
-
-sections = []
-prefix_tree = {}
-
-for title, idx in titles:
-    current_node = prefix_tree
-    for i in range(6):
-        prefix = title[:i+1]
-        while len(prefix)<i+1:
-            prefix += "_"
-        try:
-            current_node[prefix]["count"] += 1
-        except KeyError:
-            current_node[prefix] = {"count":1,"kids":{}}
-        current_node = current_node[prefix]["kids"]
-    
-c = 0
-
-pagesize = 30
-
 def distribute(accum):
     weights = [min(e[1],pagesize) for e in accum]
     s = sum(weights)
@@ -104,60 +67,19 @@ def process_node(node):
         
 try:
     os.mkdir("navigable_dict")
+except:
+    pass
+try:
+    os.mkdir("navigable_dict/en")
+except:
+    pass
+try:
     os.mkdir("navigable_dict/io")
 except:
     pass
-sink_letters = StringIO()
-sink_subdivs = StringIO()
-
-letters_in_row = 9
-subdivs_in_row = 2
-        
-for li,letter in enumerate(sorted(prefix_tree.keys())):
-    print >>sink_letters, """<td class="letter">%s</td> """ % letter.upper()
-    if li%letters_in_row == letters_in_row-1:
-        print >>sink_letters, """</tr><tr>"""   
-    print >>sink_subdivs, """<tbody class="subdivs" id="subdivs_%s" style="display:none"><tr>""" % letter
-    subdivs = list(process_node(prefix_tree[letter]["kids"]))
     
     
-    rows = int(math.ceil(1.0*len(subdivs)/subdivs_in_row))
-    for c0 in range(rows):
-        print >>sink_subdivs, """<tr>"""
-
-        for c1 in range(subdivs_in_row):
-            c = c1*rows+c0
-            try:
-                entry = subdivs[c]
-            except IndexError:
-                print >>sink_subdivs, """<td>&nbsp;</td>"""
-                continue
-            name = entry[0].replace("_","")
-            start_end = name.split("-")
-            start = start_end[0]
-            end = start_end[1] if len(start_end)>1 else start
-            end = end+"zzzzzzzzz"
-            print >>sink_subdivs, """<td><a target="content" href="io/%s.html">%s</a></td>""" % (name, name)
-
-                
-            #~ sink2 = codecs.open("navigable_dict/io/%s.html" % name, "wt", "utf-8")
-            #~ print >>sink2, """<html>
-                #~ <head>
-                #~ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-                #~ <body>"""
-            #~ for t,idx in titles:
-                #~ if t>=start and t<=end:
-                    #~ a = articles[idx]
-                    #~ a = a.replace("<k>","<b>").replace("</k>","</b>")
-                    #~ a = a.replace("<ex>","<i>").replace("</ex>","</i>")
-                    #~ print >>sink2, a+"<br>"
-            #~ sink2.close()
-
-        print >>sink_subdivs, """</tr>"""
-        
-    print >>sink_subdivs, """</tr></tbody>"""
-
-out = open("navigable_dict/index_io.html", "wt")
+out = open("navigable_dict/index.html", "wt")
 print >>out, """<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -168,10 +90,113 @@ print >>out, """<html>
 <link rel="stylesheet" href="navigable_dict.css" />
 <body>
 <table width="100%" height="100%"><tr><td width="200" height="100%" valign="top">
+<table width="100%"><td class="dir" width="50%" id="en">Eng-Ido</td><td class="dir" width="50%" id="io">Ido-Eng</td></table>
 
 """
 
-print >>out, "<table><tr>"+sink_letters.getvalue()+"</tr></table>"
-print >>out, "<table><tr>"+sink_subdivs.getvalue()+"</tr></table>"
+pagesize = 40
+letters_in_row = 9
+subdivs_in_row = 2
+sink_letters = StringIO() 
+        
+
+letters = [chr(x) for x in range(ord('a'),ord('z')+1)]
+for li,letter in enumerate(letters):
+    print >>sink_letters, """<td class="letter">%s</td> """ % letter.upper()
+    if li%letters_in_row == letters_in_row-1:
+        print >>sink_letters, """</tr><tr>"""  
+
+print >>out, """<table id="letters"><tr>"""+sink_letters.getvalue()+"""</tr></table>"""
+
+    
+for langprefix in ["io","en"]:    
+    dictionary = json.load(codecs.open("dyer_%s.json" % langprefix, "rt", "utf-8"))
+
+    articles = dictionary["articles"]
+
+    re_pureword = re.compile("[a-z]+")
+
+    titles = []
+
+
+    for i,a in enumerate(articles):
+        ar = a.strip()[3:]
+        j = ar.index("<")
+        ar = ar[:j].lower()
+        mo = re_pureword.search(ar)
+        titles.append( (mo.group(), i) )
+        
+    titles.sort(key=lambda x:x[0])
+
+    sections = []
+    prefix_tree = {}
+
+    for title, idx in titles:
+        current_node = prefix_tree
+        for i in range(6):
+            prefix = title[:i+1]
+            while len(prefix)<i+1:
+                prefix += "_"
+            try:
+                current_node[prefix]["count"] += 1
+            except KeyError:
+                current_node[prefix] = {"count":1,"kids":{}}
+            current_node = current_node[prefix]["kids"]
+        
+    c = 0
+
+
+
+    sink_subdivs = StringIO()
+
+
+            
+    for li,letter in enumerate(sorted(prefix_tree.keys())):
+        pagesize = 50 if langprefix=="en" and letter=="c" else 40
+        print >>sink_subdivs, """<tbody class="subdivs" id="subdivs_%s_%s" style="display:none"><tr>""" % (langprefix, letter)
+        subdivs = list(process_node(prefix_tree[letter]["kids"]))
+        
+        
+        rows = int(math.ceil(1.0*len(subdivs)/subdivs_in_row))
+        for c0 in range(rows):
+            print >>sink_subdivs, """<tr>"""
+
+            for c1 in range(subdivs_in_row):
+                c = c1*rows+c0
+                try:
+                    entry = subdivs[c]
+                except IndexError:
+                    print >>sink_subdivs, """<td>&nbsp;</td>"""
+                    continue
+                name = entry[0].replace("_","")
+                start_end = name.split("-")
+                start = start_end[0]
+                end = start_end[1] if len(start_end)>1 else start
+                end = end+"zzzzzzzzz"
+                print >>sink_subdivs, """<td><a target="content" href="%s/%s.html">%s</a></td>""" % (langprefix, name, name)
+
+                    
+                sink2 = codecs.open("navigable_dict/%s/%s.html" % (langprefix,name), "wt", "utf-8")
+                print >>sink2, """<html>
+                    <head>
+                    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                    <body>"""
+                for t,idx in titles:
+                    if t>=start and t<=end:
+                        a = articles[idx]
+                        a = a.replace("<k>","<b>").replace("</k>","</b>")
+                        a = a.replace("<ex>","<i>").replace("</ex>","</i>")
+                        print >>sink2, a+"<br>"
+                sink2.close()
+
+            print >>sink_subdivs, """</tr>"""
+            
+        print >>sink_subdivs, """</tr></tbody>"""
+
+
+
+
+    print >>out, "<table><tr>"+sink_subdivs.getvalue()+"</tr></table>"
 
 print >>out, """</td><td><iframe name="content" src="about:blank" width="100%" height="100%"></td></tr></body></html>"""
+out.close()

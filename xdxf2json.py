@@ -38,4 +38,4 @@ for ar in root.findall("ar"):
 dictionary = {"articles": articles, "index":index}
 
 #~ json.dump(dictionary, codecs.open("../esper2ido/esper2ido/dicts/bokaryov.json", "wt", "utf-8"), indent=None, sort_keys=True, ensure_ascii=False)
-json.dump(dictionary, codecs.open("../esper2ido/esper2ido/dicts/dyer.json", "wt", "utf-8"), indent=None, sort_keys=True, ensure_ascii=False)
+json.dump(dictionary, codecs.open("dyer/dyer_en.json", "wt", "utf-8"), indent=None, sort_keys=True, ensure_ascii=False)

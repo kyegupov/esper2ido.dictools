@@ -8,9 +8,23 @@ table, table td {
     text-decoration:underline;
     width: 25px;
     text-align:center;
+    cursor:pointer;
 }
 
 .subdivs td {
     font-size:small;
     width: 95px;
+}
+
+.dir {
+    text-decoration:underline;
+    text-align:center;
+    cursor:pointer;
+}
+.sel {
+    font-weight:bold;
+    background-color:#aaaaaa;
+}
+#letters {
+    display:none;
 }
