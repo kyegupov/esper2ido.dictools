@@ -115,21 +115,23 @@ class MyParser(HTMLParser):
             if self.baseword=="" and len(words)==1:
                 self.baseword = words[0].split("-")[0]
             words2 = []
+
             for w in words:
-                if w.startswith("-") and self.baseword!="":
-                    words2.append(self.baseword+w[1:].replace("-",""))
-                else:
-                    words2.append(w.replace("-",""))
+                words2.append(w)
+                #~ if w.startswith("-") and self.baseword!="":
+                    #~ words2.append(self.baseword+w[1:].replace("-",""))
+                #~ else:
+                    #~ words2.append(w.replace("-",""))
             keys.append(" ".join(words2))
         
         wrapped = ", ".join(["<k>"+key.strip()+"</k>" for key in keys])
-        self.article += wrapped+" "
+        self.article += " "+wrapped+" "
         self.key = ""
         
           
     def save_article(self, end_of_entry):
 
-        articles.append(self.article.replace("  "," "))
+        articles.append(self.article.replace("  "," ").strip())
                 
         self.key = ""
         self.article = ""

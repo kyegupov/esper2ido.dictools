@@ -1,6 +1,6 @@
 syntax: glob
 
-dyer/navigable_dict/*.html
+dyer/navigable_dict/index.html
 dyer/navigable_dict/*/*.html
 dyer/*.json
 dyer/out.xml

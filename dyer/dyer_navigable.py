@@ -88,6 +88,8 @@ print >>out, """<html>
 <script src="jquery-1.4.2.min.js"></script>
 <script src="navigable_dict.js"></script>
 <link rel="stylesheet" href="navigable_dict.css" />
+<title>Ido &lt;-&gt; English dictionary by Dyer</title>
+</head>
 <body>
 <table width="100%" height="100%"><tr><td width="200" height="100%" valign="top">
 <table width="100%"><td class="dir" width="50%" id="en">Eng-Ido</td><td class="dir" width="50%" id="io">Ido-Eng</td></table>
@@ -119,6 +121,7 @@ for langprefix in ["io","en"]:
     titles = []
 
 
+    print langprefix,len(articles)
     for i,a in enumerate(articles):
         ar = a.strip()[3:]
         j = ar.index("<")
@@ -152,7 +155,13 @@ for langprefix in ["io","en"]:
 
             
     for li,letter in enumerate(sorted(prefix_tree.keys())):
-        pagesize = 50 if langprefix=="en" and letter=="c" else 40
+        cnt = prefix_tree[letter]["count"]
+        print langprefix,letter,cnt
+        pagesize = 30
+        if cnt>1500:
+            pagesize = 40
+        if cnt>2000:
+            pagesize = 50
         print >>sink_subdivs, """<tbody class="subdivs" id="subdivs_%s_%s" style="display:none"><tr>""" % (langprefix, letter)
         subdivs = list(process_node(prefix_tree[letter]["kids"]))
         
@@ -198,5 +207,5 @@ for langprefix in ["io","en"]:
 
     print >>out, "<table><tr>"+sink_subdivs.getvalue()+"</tr></table>"
 
-print >>out, """</td><td><iframe name="content" src="about:blank" width="100%" height="100%"></td></tr></body></html>"""
+print >>out, """</td><td><iframe name="content" src="banner.html" width="100%" height="100%"></td></tr></body></html>"""
 out.close()
