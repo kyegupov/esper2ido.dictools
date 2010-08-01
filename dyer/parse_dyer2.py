@@ -117,11 +117,11 @@ class MyParser(HTMLParser):
             words2 = []
 
             for w in words:
-                words2.append(w)
-                #~ if w.startswith("-") and self.baseword!="":
-                    #~ words2.append(self.baseword+w[1:].replace("-",""))
-                #~ else:
-                    #~ words2.append(w.replace("-",""))
+                #~ words2.append(w)
+                if w.startswith("-") and self.baseword!="":
+                    words2.append(self.baseword+w[1:].replace("-",""))
+                else:
+                    words2.append(w.replace("-",""))
             keys.append(" ".join(words2))
         
         wrapped = ", ".join(["<k>"+key.strip()+"</k>" for key in keys])
@@ -144,7 +144,7 @@ sink = codecs.open("out.xml","wt","utf-8")
 print >>sink, """<xdxf lang_from="io" lang_to="en" format="l">"""
 
 
-for fn in glob.glob("e*.htm"):
+for fn in glob.glob("i*.htm"):
     print fn
     p = MyParser()
     p.feed(open(fn).read().decode('latin-1'))
