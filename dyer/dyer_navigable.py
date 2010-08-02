@@ -104,7 +104,7 @@ sink_letters = StringIO()
 
 letters = [chr(x) for x in range(ord('a'),ord('z')+1)]
 for li,letter in enumerate(letters):
-    print >>sink_letters, """<td class="letter">%s</td> """ % letter.upper()
+    print >>sink_letters, """<td>%s</td> """ % letter.upper(),
     if li%letters_in_row == letters_in_row-1:
         print >>sink_letters, """</tr><tr>"""  
 

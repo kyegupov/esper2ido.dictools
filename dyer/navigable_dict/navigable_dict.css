@@ -3,7 +3,7 @@ table, table td {
     border: 1px solid black;
 }
 
-.letter {
+#letters td {
     font-weight:bold;
     text-decoration:underline;
     width: 25px;
