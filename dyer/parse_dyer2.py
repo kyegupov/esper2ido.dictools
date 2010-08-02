@@ -144,7 +144,7 @@ sink = codecs.open("out.xml","wt","utf-8")
 print >>sink, """<xdxf lang_from="io" lang_to="en" format="l">"""
 
 
-for fn in glob.glob("i*.htm"):
+for fn in glob.glob("e*.htm"):
     print fn
     p = MyParser()
     p.feed(open(fn).read().decode('latin-1'))

@@ -12,8 +12,14 @@ table, table td {
 }
 
 .subdivs td {
-    font-size:small;
     width: 95px;
+}
+
+.subdivs td span {
+    font-size:small;
+    color:blue;
+    text-decoration:underline;
+    cursor:pointer;
 }
 
 .dir {

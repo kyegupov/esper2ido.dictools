@@ -182,7 +182,7 @@ for langprefix in ["io","en"]:
                 start = start_end[0]
                 end = start_end[1] if len(start_end)>1 else start
                 end = end+"zzzzzzzzz"
-                print >>sink_subdivs, """<td><a target="content" href="%s/%s.html">%s</a></td>""" % (langprefix, name, name)
+                print >>sink_subdivs, """<td><span>%s</span></td>""" % name
 
                     
                 sink2 = codecs.open("navigable_dict/%s/%s.html" % (langprefix,name), "wt", "utf-8")
@@ -207,5 +207,5 @@ for langprefix in ["io","en"]:
 
     print >>out, "<table><tr>"+sink_subdivs.getvalue()+"</tr></table>"
 
-print >>out, """</td><td><iframe name="content" src="banner.html" width="100%" height="100%"></td></tr></body></html>"""
+print >>out, """</td><td><iframe id="content" src="banner.html" width="100%" height="100%"></td></tr></body></html>"""
 out.close()
