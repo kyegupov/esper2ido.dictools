@@ -197,11 +197,13 @@ def parse_source(langletter):
                 words2 = []
 
                 for w in words:
-                    #~ words2.append(w)
-                    if w.startswith("-") and self.baseword!="":
-                        words2.append(self.baseword+w[1:].replace("-",""))
+                    if langletter=="e":
+                        words2.append(w)
                     else:
-                        words2.append(w.replace("-",""))
+                        if w.startswith("-") and self.baseword!="":
+                            words2.append(self.baseword+w[1:].replace("-",""))
+                        else:
+                            words2.append(w.replace("-",""))
                 keys.append(" ".join(words2))
             
             wrapped = ", ".join(["<k>"+key.strip()+"</k>" for key in keys])
@@ -268,7 +270,6 @@ for langprefix in ["io","en"]:
 
     print langprefix,len(articles)
     for i,a in enumerate(articles):
-        print a.strip()[:50]
         ar = a.strip()[3:]
         j = ar.index("<")
         ar = ar[:j].lower()
