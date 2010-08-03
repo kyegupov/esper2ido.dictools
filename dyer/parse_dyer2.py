@@ -108,7 +108,7 @@ class MyParser(HTMLParser):
                 #~ raise
 
     def add_corrected_key(self):
-        self.key = self.key.replace(u"\n",u" ").strip().rstrip(u":")
+        self.key = self.key.replace(u"\n",u" ").strip()
         keys = []
         for k in self.key.split(u","):
             words = k.strip().split(" ")
@@ -144,7 +144,7 @@ sink = codecs.open("out.xml","wt","utf-8")
 print >>sink, """<xdxf lang_from="io" lang_to="en" format="l">"""
 
 
-for fn in glob.glob("e*.htm"):
+for fn in glob.glob("i*.htm"):
     print fn
     p = MyParser()
     p.feed(open(fn).read().decode('latin-1'))
