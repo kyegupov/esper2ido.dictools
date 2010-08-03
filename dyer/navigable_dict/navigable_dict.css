@@ -1,4 +1,9 @@
-table, table td {
+table.allbordered, table.allbordered td {
+    border-collapse:collapse;
+    border: 1px solid black;
+}
+
+table.bordered, table.bordered td.bordered {
     border-collapse:collapse;
     border: 1px solid black;
 }
@@ -11,11 +16,11 @@ table, table td {
     cursor:pointer;
 }
 
-.subdivs td {
+#subdivs td {
     width: 95px;
 }
 
-.subdivs td span {
+#subdivs td span {
     font-size:small;
     color:blue;
     text-decoration:underline;

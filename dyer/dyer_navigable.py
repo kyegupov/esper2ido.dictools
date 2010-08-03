@@ -79,23 +79,6 @@ except:
     pass
     
     
-out = open("navigable_dict/index.html", "wt")
-print >>out, """<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" href="jquery.tooltip.css" />
-
-<script src="jquery-1.4.2.min.js"></script>
-<script src="navigable_dict.js"></script>
-<link rel="stylesheet" href="navigable_dict.css" />
-<title>Ido &lt;-&gt; English dictionary by Dyer</title>
-</head>
-<body>
-<table width="100%" height="100%"><tr><td width="200" height="100%" valign="top">
-<table width="100%"><td class="dir" width="50%" id="en">Eng-Ido</td><td class="dir" width="50%" id="io">Ido-Eng</td></table>
-
-"""
-
 pagesize = 40
 letters_in_row = 9
 subdivs_in_row = 2
@@ -108,8 +91,7 @@ for li,letter in enumerate(letters):
     if li%letters_in_row == letters_in_row-1:
         print >>sink_letters, """</tr><tr>"""  
 
-print >>out, """<table id="letters"><tr>"""+sink_letters.getvalue()+"""</tr></table>"""
-
+subdivs_all = {}
     
 for langprefix in ["io","en"]:    
     dictionary = json.load(codecs.open("dyer_%s.json" % langprefix, "rt", "utf-8"))
@@ -150,7 +132,6 @@ for langprefix in ["io","en"]:
 
 
 
-    sink_subdivs = StringIO()
 
 
             
@@ -162,50 +143,30 @@ for langprefix in ["io","en"]:
             pagesize = 40
         if cnt>2000:
             pagesize = 50
-        print >>sink_subdivs, """<tbody class="subdivs" id="subdivs_%s_%s" style="display:none"><tr>""" % (langprefix, letter)
-        subdivs = list(process_node(prefix_tree[letter]["kids"]))
+        pairs = list(process_node(prefix_tree[letter]["kids"]))
+        subdivs = [e[0].replace("_","") for e in pairs]
+        subdivs_all[langprefix+"_"+letter] = subdivs
+        for name in subdivs:
+            start_end = name.split("-")
+            start = start_end[0]
+            end = start_end[1] if len(start_end)>1 else start
+            end = end+"zzzzzzzzz"
+            sink2 = codecs.open("navigable_dict/%s/%s.html" % (langprefix,name), "wt", "utf-8")
+            print >>sink2, """<html>
+                <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <body>"""
+            for t,idx in titles:
+                if t>=start and t<=end:
+                    a = articles[idx]
+                    a = a.replace("<k>","<b>").replace("</k>","</b>")
+                    a = a.replace("<ex>","<i>").replace("</ex>","</i>")
+                    print >>sink2, a+"<br>"
+            sink2.close()
         
-        
-        rows = int(math.ceil(1.0*len(subdivs)/subdivs_in_row))
-        for c0 in range(rows):
-            print >>sink_subdivs, """<tr>"""
 
-            for c1 in range(subdivs_in_row):
-                c = c1*rows+c0
-                try:
-                    entry = subdivs[c]
-                except IndexError:
-                    print >>sink_subdivs, """<td>&nbsp;</td>"""
-                    continue
-                name = entry[0].replace("_","")
-                start_end = name.split("-")
-                start = start_end[0]
-                end = start_end[1] if len(start_end)>1 else start
-                end = end+"zzzzzzzzz"
-                print >>sink_subdivs, """<td><span>%s</span></td>""" % name
+out = codecs.open("navigable_dict/subdivs.js", "wt", "utf-8")
 
-                    
-                sink2 = codecs.open("navigable_dict/%s/%s.html" % (langprefix,name), "wt", "utf-8")
-                print >>sink2, """<html>
-                    <head>
-                    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-                    <body>"""
-                for t,idx in titles:
-                    if t>=start and t<=end:
-                        a = articles[idx]
-                        a = a.replace("<k>","<b>").replace("</k>","</b>")
-                        a = a.replace("<ex>","<i>").replace("</ex>","</i>")
-                        print >>sink2, a+"<br>"
-                sink2.close()
-
-            print >>sink_subdivs, """</tr>"""
-            
-        print >>sink_subdivs, """</tr></tbody>"""
-
-
-
-
-    print >>out, "<table><tr>"+sink_subdivs.getvalue()+"</tr></table>"
-
-print >>out, """</td><td><iframe id="content" src="banner.html" width="100%" height="100%"></td></tr></body></html>"""
+s = json.dumps(subdivs_all, indent=None, sort_keys=True, ensure_ascii=False)
+out.write("subdivs_all="+s)
 out.close()
