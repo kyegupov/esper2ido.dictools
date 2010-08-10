@@ -135,8 +135,10 @@ class MyParser(HTMLParser):
                     if self.baseword.endswith("e"):
                         if self.baseword[-2]==w[1]:
                             w2 = self.baseword[:-1]+w[2:].replace("-","")
-                        else:
+                        elif w[1:] in "ed er ery al ing ity en ist ism ation".split():
                             w2 = self.baseword[:-1]+w[1:].replace("-","")
+                        else:
+                            w2 = self.baseword+w[1:].replace("-","")
                     elif self.baseword.endswith("y") and w.startswith("-i"):
                         w2 = self.baseword[:-1]+w[1:].replace("-","")
                     else:
