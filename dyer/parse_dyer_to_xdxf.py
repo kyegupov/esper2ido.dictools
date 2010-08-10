@@ -131,18 +131,20 @@ class MyParser(HTMLParser):
             words2 = []
 
             for w in words:
-                #~ words2.append(w)
                 if w.startswith("-") and self.baseword!="":
                     if self.baseword.endswith("e"):
                         if self.baseword[-2]==w[1]:
-                            words2.append(self.baseword[:-1]+w[2:].replace("-",""))
+                            w2 = self.baseword[:-1]+w[2:].replace("-","")
                         else:
-                            words2.append(self.baseword[:-1]+w[1:].replace("-",""))
+                            w2 = self.baseword[:-1]+w[1:].replace("-","")
+                    elif self.baseword.endswith("y") and w.startswith("-i"):
+                        w2 = self.baseword[:-1]+w[1:].replace("-","")
                     else:
-                        print >>subst, self.baseword, w, self.baseword+w[1:].replace("-","")
-                        words2.append(self.baseword+w[1:].replace("-",""))
+                        w2 = self.baseword+w[1:].replace("-","")
+                    print >>subst, self.baseword, w, w2
                 else:
-                    words2.append(w.replace("-",""))
+                    w2 = w.replace("-","")
+                words2.append(w2)
             keys.append(" ".join(words2))
         
         wrapped = ", ".join(["<k>"+key.strip()+"</k>" for key in keys])
