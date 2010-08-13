@@ -3,6 +3,7 @@
 import json, glob,codecs, re
 from HTMLParser import HTMLParser 
 from htmlentitydefs import name2codepoint
+from pprint import pprint
 
 
 articles = []
@@ -16,9 +17,157 @@ S_READING_DEF = 3
 strong = ["b","strong"]
 em = ["i","em"]
 
-subst = open("substitiution_corrections_en.txt","wt")
+subst_file = open("substitiution_corrections_en.txt","rt")
+subst_map = {}
+for line in subst_file:
+    base, suffix, replacement = line.strip().split(" ",2)
+    subst_map[(base,suffix)] = replacement
+    
+subst_unused = set(subst_map.keys())
 
 langcode = "en"
+
+if langcode == "io":
+    preps = [
+        "a",
+        "ad",
+        "adsur",
+        "ante",
+        "avan",
+        "de",
+        "di",
+        "dop",
+        "dum",
+        "ek",
+        "en",
+        "for",
+        "infre",
+        "inter",
+        "koram",
+        "kun",
+        "per",
+        "por",
+        "pos",
+        "pro",
+        "sub",
+        "sur",
+        "vers",
+        "vice",
+        "ye",
+        "yen",
+        "olim",
+        "apud",
+        "proxim"
+    ]
+
+    conjs = ["o", "od", "e", "ed", "ma"]
+
+    nums = ["zero", "un", "du", "tri", "quar", "kin", "sis", "sep", "ok", "non", "dek", "cent", "mil"]
+
+    pronouns = ["me", "tu", "vu", "ilu", "elu", "olu", "lu", "ni", "vi", "ili", "eli", "oli", "li", "onu"]
+else:
+    preps = """aboard
+about
+above
+absent
+across
+after
+against
+along
+alongside
+amid
+amidst
+among
+amongst
+around
+as
+aside
+astride
+at
+athwart
+atop
+barring
+before
+behind
+below
+beneath
+beside
+besides
+between
+betwixt
+beyond
+but
+by
+circa
+concerning
+despite
+down
+during
+except
+excluding
+failing
+following
+for
+from
+given
+in
+including
+inside
+into
+like
+mid
+midst
+minus
+near
+next
+notwithstanding
+of
+off
+on
+onto
+opposite
+out
+outside
+over
+pace
+past
+per
+plus
+pro
+qua
+regarding
+round
+save
+since
+than
+through
+thru
+throughout
+thruout
+till
+times
+to
+toward
+towards
+under
+underneath
+unlike
+until
+up
+upon
+versus
+via
+with
+within
+without
+worth""".splitlines()
+    nums = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "hundred", "thousand"]
+    
+    conjs = ["or", "and",  "but", "so"]
+    
+    pronouns = "I me myself mine my we us ourselves ourself ours our you you yourself yours your he him himself his his she her herself hers her it it itself its its they them themselves theirs their".split(" ")
+
+skippable = set(preps + conjs + nums + pronouns)
 
 class MyParser(HTMLParser):
     def __init__(self):
@@ -119,6 +268,8 @@ class MyParser(HTMLParser):
         multiforms = False
         if self.key.find(", -")>=0:
             multiforms = True
+        if "(" in self.key:
+            print self.key
         for k in self.key.split(u","):
             words = k.strip().split(" ")
             if self.baseword=="" and len(words)==1:
@@ -143,9 +294,14 @@ class MyParser(HTMLParser):
                         w2 = self.baseword[:-1]+w[1:].replace("-","")
                     else:
                         w2 = self.baseword+w[1:].replace("-","")
-                    print >>subst, self.baseword, w, w2
+                    pair = (self.baseword, w)
+                    if pair in subst_map:
+                        w2 = subst_map[pair]
+                        subst_unused.discard(pair)
                 else:
                     w2 = w.replace("-","")
+                    if (w in skippable) or (len(w)>0 and w[-1]=="s" and w[:-1] in nums) or (len(w)==2 and w.endswith(".")):
+                        w2 = "<nu>"+w2+"</nu>"
                 words2.append(w2)
             keys.append(" ".join(words2))
         
@@ -193,3 +349,5 @@ for a in articles:
     print >>sink, "<ar>"+a.replace("&","&amp;")+"</ar>"
     
 print >>sink, "</xdxf>"
+
+pprint(subst_unused)
