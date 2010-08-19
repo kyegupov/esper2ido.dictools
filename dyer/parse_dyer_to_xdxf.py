@@ -1,8 +1,8 @@
 # coding: utf-8
 
-import json, glob,codecs, re
-from HTMLParser import HTMLParser 
-from htmlentitydefs import name2codepoint
+import json, glob, re
+from html.parser import HTMLParser 
+from html.entities import name2codepoint
 from pprint import pprint
 
 
@@ -226,8 +226,8 @@ class MyParser(HTMLParser):
         if self.state == 2:
             if self.in_lang_sources:
                 return
-            if unichr(8212) in data:
-                data = data.split(unichr(8212))[0].rstrip()        
+            if chr(8212) in data:
+                data = data.split(chr(8212))[0].rstrip()        
                 self.in_lang_sources = True
             if self.in_key:
                 self.key += data
@@ -237,12 +237,12 @@ class MyParser(HTMLParser):
     def handle_charref(self, name):
         cpoint = int(name)
         if cpoint>255:
-            self.handle_data(unichr(cpoint))
+            self.handle_data(chr(cpoint))
         else:
-            self.handle_data(chr(cpoint).decode("cp1252"))
+            self.handle_data(bytes([cpoint]).decode("cp1252"))
 
     def handle_entityref(self, name):
-        self.handle_data(unichr(name2codepoint[name]))
+        self.handle_data(chr(name2codepoint[name]))
 
     def handle_startendtag(self, tag, attrs):
         if self.state == 2:
@@ -258,7 +258,7 @@ class MyParser(HTMLParser):
                 #~ raise
 
     def add_corrected_key(self):
-        self.key = self.key.replace(u"\n",u" ").strip()
+        self.key = self.key.replace("\n"," ").strip()
         if self.key.endswith(":"):
             sc = True
             self.key = self.key[:-1]
@@ -269,8 +269,8 @@ class MyParser(HTMLParser):
         if self.key.find(", -")>=0:
             multiforms = True
         if "(" in self.key:
-            print self.key
-        for k in self.key.split(u","):
+            print(self.key)
+        for k in self.key.split(","):
             words = k.strip().split(" ")
             if self.baseword=="" and len(words)==1:
                 if multiforms or langcode=="io":
@@ -324,14 +324,14 @@ class MyParser(HTMLParser):
         self.in_lang_sources = False
 
         
-sink = codecs.open("out.xml","wt","utf-8")
-print >>sink, """<xdxf lang_from="io" lang_to="en" format="l">"""
+sink = open("out.xml","wt",encoding="utf-8")
+print("""<xdxf lang_from="io" lang_to="en" format="l">""", file=sink)
 
 
 for fn in glob.glob("e*.htm"):
-    print fn
+    print(fn)
     p = MyParser()
-    p.feed(open(fn).read().decode('latin-1'))
+    p.feed(open(fn, encoding='latin-1').read())
     
     #~ soup = BeautifulSoup(open(fn).read())
 
@@ -346,8 +346,8 @@ for fn in glob.glob("e*.htm"):
 
 
 for a in articles:
-    print >>sink, "<ar>"+a.replace("&","&amp;")+"</ar>"
+    print("<ar>"+a.replace("&","&amp;")+"</ar>", file=sink)
     
-print >>sink, "</xdxf>"
+print("</xdxf>", file=sink)
 
 pprint(subst_unused)
