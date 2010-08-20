@@ -194,8 +194,8 @@ class MyParser(HTMLParser):
             if tag in strong:
                 self.in_key = True
             if tag in em:
-                self.chain.append("ex")
-                self.article += "<ex>"
+                self.chain.append("i")
+                self.article += "<i>"
                     
             if tag=="br":
                 if self.in_key:
@@ -217,8 +217,8 @@ class MyParser(HTMLParser):
                     self.add_corrected_key()
                     self.in_key = False
             if tag in em:
-                assert self.chain.pop() == "ex"
-                self.article += "</ex>"
+                assert self.chain.pop() == "i"
+                self.article += "</i>"
                 
 
     
@@ -258,6 +258,7 @@ class MyParser(HTMLParser):
                 #~ raise
 
     def add_corrected_key(self):
+        is_baseword = False
         self.key = self.key.replace("\n"," ").strip()
         if self.key.endswith(":"):
             sc = True
@@ -273,6 +274,7 @@ class MyParser(HTMLParser):
         for k in self.key.split(","):
             words = k.strip().split(" ")
             if self.baseword=="" and len(words)==1:
+                is_baseword = True
                 if multiforms or langcode=="io":
                     self.baseword = words[0].rsplit("-",1)[0].rstrip(":")
                 else:
@@ -301,13 +303,16 @@ class MyParser(HTMLParser):
                 else:
                     w2 = w.replace("-","")
                     if (w in skippable) or (len(w)>0 and w[-1]=="s" and w[:-1] in nums) or (len(w)==2 and w.endswith(".")):
-                        w2 = "<nu>"+w2+"</nu>"
+                        pass
+                        #~ w2 = "<nu>"+w2+"</nu>"
                 words2.append(w2)
             keys.append(" ".join(words2))
         
-        wrapped = ", ".join(["<k>"+key.strip()+"</k>" for key in keys])
+        
+        tagmode = "k" if is_baseword else "ex"
+        wrapped = ", ".join(["<{0}>".format(tagmode)+key.strip()+"</{0}>".format(tagmode) for key in keys])
         self.article += " "+wrapped
-        if sc:
+        if sc and not is_baseword:
             self.article += ":"
         self.article += " "
         self.key = ""
