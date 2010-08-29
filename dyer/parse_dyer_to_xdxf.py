@@ -25,7 +25,7 @@ for line in subst_file:
     
 subst_unused = set(subst_map.keys())
 
-langcode = "en"
+langcode = "io"
 
 if langcode == "io":
     preps = [
@@ -269,10 +269,10 @@ class MyParser(HTMLParser):
         multiforms = False
         if self.key.find(", -")>=0:
             multiforms = True
-        if "(" in self.key:
-            print(self.key)
-        if "," in self.key:
-            print(self.key)
+        #~ if "(" in self.key:
+            #~ print(self.key)
+        #~ if "," in self.key:
+            #~ print(self.key)
         for k in self.key.split(","):
             words = k.strip().split(" ")
             if self.baseword=="" and len(words)==1:
@@ -287,21 +287,24 @@ class MyParser(HTMLParser):
 
             for w in words:
                 if w.startswith("-") and self.baseword!="":
-                    if self.baseword.endswith("e"):
-                        if self.baseword[-2]==w[1]:
-                            w2 = self.baseword[:-1]+w[2:].replace("-","")
-                        elif w[1:] in "ed er ery al ing ity en ist ism ation".split():
+                    if langcode == "io":
+                        w2 = self.baseword+w[1:].replace("-","")
+                    elif langcode == "en":
+                        if self.baseword.endswith("e"):
+                            if self.baseword[-2]==w[1]:
+                                w2 = self.baseword[:-1]+w[2:].replace("-","")
+                            elif w[1:] in "ed er ery al ing ity en ist ism ation".split():
+                                w2 = self.baseword[:-1]+w[1:].replace("-","")
+                            else:
+                                w2 = self.baseword+w[1:].replace("-","")
+                        elif self.baseword.endswith("y") and w.startswith("-i"):
                             w2 = self.baseword[:-1]+w[1:].replace("-","")
                         else:
                             w2 = self.baseword+w[1:].replace("-","")
-                    elif self.baseword.endswith("y") and w.startswith("-i"):
-                        w2 = self.baseword[:-1]+w[1:].replace("-","")
-                    else:
-                        w2 = self.baseword+w[1:].replace("-","")
-                    pair = (self.baseword, w)
-                    if pair in subst_map:
-                        w2 = subst_map[pair]
-                        subst_unused.discard(pair)
+                        pair = (self.baseword, w)
+                        if pair in subst_map:
+                            w2 = subst_map[pair]
+                            subst_unused.discard(pair)
                 else:
                     w2 = w.replace("-","")
                     if (w in skippable) or (len(w)>0 and w[-1]=="s" and w[:-1] in nums) or (len(w)==2 and w.endswith(".")):
@@ -325,7 +328,7 @@ class MyParser(HTMLParser):
           
     def save_article(self, end_of_entry):
 
-        articles.append(self.article.replace("  "," ").strip())
+        articles.append(self.article.replace("\n", " ").replace("  "," ").replace("  "," ").strip())
                 
         self.key = ""
         self.article = ""
@@ -334,12 +337,16 @@ class MyParser(HTMLParser):
         self.in_lang_sources = False
 
         
-sink = open("dyer_en-io.xml","wt",encoding="utf-8")
-print("""<xdxf lang_from="en" lang_to="io" format="l"><full_name>Dyer English-Ido dictionary</full_name>""", file=sink)
-#~ print("""<xdxf lang_from="en" lang_to="io" format="l"><full_name>""", file=sink)
+
+if langcode=="en":
+    sink = open("dyer_en-io.xml","wt",encoding="utf-8")
+    print("""<xdxf lang_from="en" lang_to="io" format="l"><full_name>Dyer English-Ido dictionary</full_name>""", file=sink)
+else:
+    sink = open("dyer_io-en.xml","wt",encoding="utf-8")
+    print("""<xdxf lang_from="io" lang_to="en" format="l"><full_name>Dyer Ido-English dictionary</full_name>""", file=sink)
 
 
-for fn in glob.glob("e*.htm"):
+for fn in glob.glob(langcode[0]+"*.htm"):
     print(fn)
     p = MyParser()
     p.feed(open(fn, encoding='latin-1').read())
@@ -361,4 +368,5 @@ for a in articles:
     
 print("</xdxf>", file=sink)
 
-pprint(subst_unused)
+if langcode == "en":
+    pprint(subst_unused)
