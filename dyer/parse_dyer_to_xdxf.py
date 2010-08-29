@@ -271,6 +271,8 @@ class MyParser(HTMLParser):
             multiforms = True
         if "(" in self.key:
             print(self.key)
+        if "," in self.key:
+            print(self.key)
         for k in self.key.split(","):
             words = k.strip().split(" ")
             if self.baseword=="" and len(words)==1:
@@ -309,9 +311,12 @@ class MyParser(HTMLParser):
             keys.append(" ".join(words2))
         
         
-        tagmode = "k" if is_baseword else "ex"
-        wrapped = ", ".join(["<{0}>".format(tagmode)+key.strip()+"</{0}>".format(tagmode) for key in keys])
-        self.article += " "+wrapped
+        if is_baseword:
+            wrapped = ", ".join(["<k>"+key.strip()+"</k>" for key in keys])
+            self.article += "<k></k>"+wrapped
+        else:
+            wrapped = ", ".join(["<ex>"+key.strip()+"</ex>" for key in keys])
+            self.article += " "+wrapped
         if sc and not is_baseword:
             self.article += ":"
         self.article += " "
@@ -329,8 +334,9 @@ class MyParser(HTMLParser):
         self.in_lang_sources = False
 
         
-sink = open("out.xml","wt",encoding="utf-8")
-print("""<xdxf lang_from="io" lang_to="en" format="l">""", file=sink)
+sink = open("dyer_en-io.xml","wt",encoding="utf-8")
+print("""<xdxf lang_from="en" lang_to="io" format="l"><full_name>Dyer English-Ido dictionary</full_name>""", file=sink)
+#~ print("""<xdxf lang_from="en" lang_to="io" format="l"><full_name>""", file=sink)
 
 
 for fn in glob.glob("e*.htm"):
