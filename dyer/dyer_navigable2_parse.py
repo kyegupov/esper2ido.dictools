@@ -6,14 +6,18 @@ import glob
 from HTMLParser import HTMLParser 
 from htmlentitydefs import name2codepoint
 
-import cPickle
+import cPickle, json
 
    
+re_separator = re.compile("[;,]")
+re_optionalPart = re.compile(ur"\([a-zéèçàœæôê]+\)", re.I+re.U)
+
+
+
     
 def parse_source(langletter):
     articles = []
 
-    re_w = re.compile("[a-zA-Z]*-?[a-zA-Z]+")
 
     S_EXPECT_WORD = 0
     S_READING_WORD = 1
@@ -31,9 +35,10 @@ def parse_source(langletter):
             self.state = 0
             self.in_key = False
             self.key = ""
+            self.curKeys = []
             self.baseword = ""
             self.lastroot = ""
-            self.article = ""
+            self.curArticle = ""
             self.lastword = ""
             self.c = 0
             self.is_new_entry = True
@@ -49,16 +54,18 @@ def parse_source(langletter):
                     #~ raise
                 if tag in strong:
                     self.in_key = True
+                    self.chain.append("b")
+                    self.curArticle += "<b>"
                 if tag in em:
-                    self.chain.append("ex")
-                    self.article += "<ex>"
+                    self.chain.append("i")
+                    self.curArticle += "<i>"
                         
                 if tag=="br":
                     if self.in_key:
-                        self.add_corrected_key()
+                        self.register_keyword()
                     self.chain.reverse()
                     for tn in self.chain:
-                        self.article += "</"+tn+">"
+                        self.curArticle += "</"+tn+">"
                     self.save_article(True)
                     
                 else:
@@ -70,11 +77,13 @@ def parse_source(langletter):
                 
                 if tag in strong:
                     if self.in_key:
-                        self.add_corrected_key()
+                        self.register_keyword()
+                        assert self.chain==[] or self.chain.pop() == "b"
+                        self.curArticle += "</b>"
                         self.in_key = False
                 if tag in em:
-                    assert self.chain.pop() == "ex"
-                    self.article += "</ex>"
+                    assert self.chain.pop() == "i"
+                    self.curArticle += "</i>"
                     
 
         
@@ -87,8 +96,9 @@ def parse_source(langletter):
                     self.in_lang_sources = True
                 if self.in_key:
                     self.key += data
+                    self.curArticle += data
                 else:
-                    self.article += data
+                    self.curArticle += data
         
         def handle_charref(self, name):
             cpoint = int(name)
@@ -107,16 +117,16 @@ def parse_source(langletter):
                         self.add_corrected_key()
                     self.chain.reverse()
                     for tn in self.chain:
-                        self.article += "</"+tn+">"
+                        self.curArticle += "</"+tn+">"
                     self.save_article(True)
                 #~ if attrs:
                     #~ print "oh boy, attrs!", attrs
                     #~ raise
 
-        def add_corrected_key(self):
-            self.key = self.key.replace(u"\n",u" ").strip()
+        def register_keyword(self):
+            self.key = self.key.replace(u"\n",u" ").replace(u"\r",u"").strip().rstrip(":").rstrip("*")
             keys = []
-            for k in self.key.split(u","):
+            for k in re_separator.split(self.key):
                 words = k.strip().split(" ")
                 if self.baseword=="" and len(words)==1:
                     self.baseword = words[0].split("-")[0]
@@ -127,22 +137,30 @@ def parse_source(langletter):
                         words2.append(w)
                     else:
                         if w.startswith("-") and self.baseword!="":
-                            words2.append(self.baseword+w[1:].replace("-",""))
+                            ww = self.baseword+w[1:].replace("-","")
                         else:
-                            words2.append(w.replace("-",""))
-                keys.append(" ".join(words2))
+                            ww = w.replace("-","")
+                        words2.append(ww.replace("*", ""))
+                newkey = " ".join(words2)
+                optionalSuffixes = re_optionalPart.findall(newkey)
+                if newkey!="":
+                    if len(optionalSuffixes)>0:
+                        if newkey!=optionalSuffixes[0]:
+                            keys.append(newkey.replace(optionalSuffixes[0], ""))
+                            keys.append(newkey.replace(optionalSuffixes[0], optionalSuffixes[0][1:-1]))
+                    else:
+                        keys.append(newkey)
             
-            wrapped = ", ".join(["<k>"+key.strip()+"</k>" for key in keys])
-            self.article += " "+wrapped+" "
+            self.curKeys.extend(keys)
             self.key = ""
-            
               
         def save_article(self, end_of_entry):
 
-            articles.append(self.article.replace("  "," ").strip())
+            articles.append((self.curArticle.replace("\n"," ").replace("\r","").replace("  "," ").strip(), self.curKeys))
                     
             self.key = ""
-            self.article = ""
+            self.curArticle = ""
+            self.curKeys = []
             self.baseword = ""
             self.chain = []
             self.in_lang_sources = False
@@ -151,7 +169,7 @@ def parse_source(langletter):
     for fn in glob.glob(langletter+"*.htm"):
         print fn
         p = MyParser()
-        p.feed(open(fn).read().decode('latin-1'))
+        p.feed(open(fn, "rt").read().decode('latin-1'))
         
     return articles    
     
@@ -160,4 +178,5 @@ for langprefix in ["io","en"]:
 
     articles = parse_source(langprefix[0])
     cPickle.dump(articles, open(langprefix+".pickle", "wb"))
+    #~ json.dump(articles, open(langprefix+".json", "wb"), indent=4)
     
