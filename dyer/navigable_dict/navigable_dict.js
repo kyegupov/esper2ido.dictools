@@ -1,42 +1,57 @@
 function main() {
     $(".dir").click(select_dir);
-    $("#letters td").click(open_subdivs);
+    $("#searchbox").change(refresh_wordlist);
+    select_dir.call($("#en")[0]);
+    setTimeout(refresh_wordlist, 500);
+    window.oldQuery = "";
 }
 
 function select_dir() {
     $("#letters").show();
-    $("#subdivs")[0].innerHTML = "";
     dir = this.id;
     $(".dir").removeClass("sel");
     $(this).addClass("sel");
-    $("#content").attr("src", "about:blank");
 }
 
-function open_subdivs() {
-    var subdivs = subdivs_all[dir+"_"+this.textContent.toLowerCase()];
-    var rownum = Math.ceil(subdivs.length/2.0);
-    var text = "";
-    for (var i=0; i<rownum; i++) {
-        text += "<tr>";
-        for (var j=0; j<2; j++) {
-            var sd = subdivs[j*rownum+i];
-            if (sd!==undefined) {
-                text += "<td><span>"+sd+"</span></td>";
-            } else {
-                text += "<td>&nbsp;</td>";
+function refresh_wordlist() {
+    var query = $("#searchbox").val();
+    if (query!=oldQuery) {
+        oldQuery = query;
+        var words = wordlist_all[dir];
+        var exact = [];
+        var partial = [];
+        for (var i=0; i<words.length; i++) {
+            if (words[i]==query) {
+                exact.push("<a href=\"#\" onclick=\"load_word('"+words[i]+"')\">"+words[i]+"</a>");
+            } else if (words[i].indexOf(query)==0) {
+                partial.push("<a href=\"#\" onclick=\"load_word('"+words[i]+"')\">"+words[i]+"</a>");
             }
         }
-        text += "</tr>";
+        var res = exact.join("<br>");
+        if (exact.length) res += "<hr>";
+        if (partial.length>30) {
+            res += partial.length + " matching words found";
+        } else {
+            res += partial.join("<br>");
+        }
+        $("#words")[0].innerHTML = res;
     }
-    $("#subdivs")[0].innerHTML = text;
-    $("#subdivs td span").click(goto_subdiv);
-    $("#content").attr("src", "about:blank");
+    setTimeout(refresh_wordlist, 500);
 }
 
-function goto_subdiv() {
-    var subdiv = this.textContent;
-    $("#content").attr("src", dir+"/"+subdiv+".html");
+function load_word(word) {
+    for (var preflen=3; preflen>=1; preflen--) {
+        var pref = word.substr(0, preflen);
+        while (pref.length<preflen) pref += "_";
+        for (var i=0; i<subdivs_all[dir].length; i++) {
+            if (subdivs_all[dir][i]==pref) {
+                $("#content")[0].src = dir+"/"+pref+".html#"+word;
+                return;
+            }
+        }
+    }
 }
+
 
 
 dir = null;

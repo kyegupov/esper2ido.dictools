@@ -2,5 +2,6 @@ syntax: glob
 
 dyer/navigable_dict/*/*.html
 dyer/navigable_dict/subdivs.js
+dyer/navigable_dict/wordlist.js
 dyer/*.json
 dyer/out.xml
