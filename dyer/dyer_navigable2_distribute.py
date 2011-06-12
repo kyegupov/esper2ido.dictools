@@ -38,11 +38,15 @@ for langprefix in ["io","en"]:
     
     articles.sort(key = lambda x:x[1][0])
     searchIndex = {}
+    debugIndex = {}
     for i,a in enumerate(articles):
         article, keywords = a
         for k in keywords:
             searchIndex.setdefault(k, set())
             searchIndex[k].add(i)
+        for k in keywords[1:]:
+            debugIndex.setdefault(k, [])
+            debugIndex[k].append(keywords[0])
 
     trie = {}
     prev = ""
@@ -71,6 +75,9 @@ for langprefix in ["io","en"]:
             
 
     searchIndex_all[langprefix] = trie
+    out = codecs.open("navigable_dict/debugIndex_%s.json" % langprefix, "wt", "utf-8")
+    s = json.dumps(debugIndex, indent=4, sort_keys=True, ensure_ascii=False, separators=(',', ':'))
+    out.write(s)
         
     for chunkStart in xrange(0, len(articles), 100):
         out = codecs.open("navigable_dict/%s/%04d.js" % (langprefix, chunkStart/100), "wt", "utf-8")

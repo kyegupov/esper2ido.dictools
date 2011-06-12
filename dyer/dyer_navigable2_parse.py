@@ -12,7 +12,7 @@ import cPickle, json
 re_separator = re.compile("[;,]")
 re_optionalPart = re.compile(ur"\([a-zéèçàœæôê]+\)", re.I+re.U)
 
-
+re_ulx = re.compile("^(ul[oaiu], )*(ul[oaiu])$")
 
     
 def parse_source(langletter):
@@ -45,14 +45,13 @@ def parse_source(langletter):
             self.chain = []
             self.in_lang_sources = False
             self.nextEntryChain = []
+            self.in_cf = False
+            self.in_vexp = False
             
         def handle_starttag(self, tag, attrs):
             if tag=="p":
                 self.state+=1
             if self.state == 2:
-                #~ if attrs:
-                    #~ print "oh boy, attrs!", attrs
-                    #~ raise
                 if tag in strong:
                     self.in_key = True
                     self.chain.append("b")
@@ -107,6 +106,11 @@ def parse_source(langletter):
                     self.curArticle += data
                 else:
                     self.curArticle += data
+                cf = "cf." if langletter=="I" else "see"
+                if data.find(cf)>-1:
+                    self.in_cf = True
+                if data.find(" V. exp.")>-1 or data.find("Ant.:")>-1:
+                    self.in_vexp = True
         
         def handle_charref(self, name):
             cpoint = int(name)
@@ -132,7 +136,15 @@ def parse_source(langletter):
                     #~ raise
 
         def register_keyword(self):
-            self.key = self.key.replace(u"\n",u" ").replace(u"\r",u"").strip().rstrip(":").rstrip("*")
+            self.key = self.key.replace(u"\n",u" ").replace(u"\r",u"").strip().rstrip("*")
+            lbraces = self.curArticle.count("(")
+            rbraces = self.curArticle.count(")")
+            if self.key and (not self.in_cf) and (not self.in_vexp) and (not self.key.endswith(":") and (rbraces==lbraces)):
+                pass
+                #~ print (self.key, self.curArticle)
+                #~ print (self.key, (not self.in_cf) , (not self.in_vexp) , (not self.key.endswith(":")))
+                #~ raise hell
+            self.key = self.key.rstrip(":")
             keys = []
             for k in re_separator.split(self.key):
                 words = k.strip().split(" ")
@@ -154,17 +166,18 @@ def parse_source(langletter):
                 if newkey!="":
                     if len(optionalSuffixes)>0:
                         if newkey!=optionalSuffixes[0]:
-                            keys.append(newkey.replace(optionalSuffixes[0], ""))
+                            keys.append(newkey.replace(optionalSuffixes[0], "").strip())
                             keys.append(newkey.replace(optionalSuffixes[0], optionalSuffixes[0][1:-1]))
                     else:
                         keys.append(newkey)
             
             self.curKeys.extend(keys)
             self.key = ""
+            self.in_cf = False
               
         def save_article(self, end_of_entry):
 
-            assert len(self.curKeys)!=0
+            assert len(self.curKeys)!=0, self.curArticle
             for k in self.curKeys[:]:
                 latinized = k.replace(u"é", "e").replace(u"è","e").replace(u"ç","c").replace(u"à","a").replace(u"œ","oe").replace(u"æ","ae").replace(u"ô", "o").replace(u"ê", "e")
                 if k!=latinized:
@@ -177,12 +190,16 @@ def parse_source(langletter):
             self.baseword = ""
             self.chain = []
             self.in_lang_sources = False
+            self.in_vexp = False
 
             
     for fn in glob.glob(langletter+"*.htm"):
         print fn
         p = MyParser()
-        p.feed(open(fn, "rt").read().decode('latin-1'))
+        text = open(fn, "rt").read().decode('latin-1')
+        text = text.replace("</b>(<b>", "(").replace("</b>)<b>", ")")
+        lines = text.splitlines()
+        p.feed(text)
         
     return articles    
     
