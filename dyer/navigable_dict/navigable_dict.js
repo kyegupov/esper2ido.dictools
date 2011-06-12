@@ -17,16 +17,15 @@ function make_link(keyword, articleIds) {
     return "<a href=\"javascript:load_articles('"+articleIds.join(",")+"')\">"+keyword+"</a>";
 }
 
-function recursive_enumerate(prefix, trieNode, limit, resultMap) {
+function recursive_enumerate(prefix, trieNode, limit, results) {
     for (var key in trieNode) {
         var value = trieNode[key];
-        if (value.hasOwnProperty(0)) {
-            resultMap[prefix+key] = value;
-            limit--;
-            if (limit<=0) break;
+        if (value.constructor == Array) {
+            results.push([prefix+key, value]);
         } else {
-            recursive_enumerate(prefix+key, value, limit, resultMap);
+            recursive_enumerate(prefix+key, value, limit, results);
         }
+        if (results.length >= limit) break;
     }
 }
 
@@ -36,7 +35,6 @@ function refresh_wordlist() {
         oldQuery = query;
         var trie = searchIndex_all[dir];
         var exact = [];
-        var partial = [];
         var trieNode = trie;
         for (var i=0; i<query.length; i++) {
             var ch = query.charAt(i);
@@ -44,21 +42,24 @@ function refresh_wordlist() {
             trieNode = trieNode[ch];
             var tail = query.substr(i+1);
             if (trieNode.hasOwnProperty(tail)
-             && trieNode[tail].hasOwnProperty(0)) {
+             && trieNode[tail].constructor == Array) {
                 exact.push(make_link(query, trieNode[tail]));
                 break
             }
         }
-        var foundArticles = {};
-        recursive_enumerate(query, trieNode, 30, foundArticles);
-        for (var key in foundArticles) {
-            partial.push(make_link(key, foundArticles[key]));
-        }
+        var foundArticles = [];
+        recursive_enumerate(query, trieNode, 100, foundArticles);
         var res = exact.join("<br>");
         if (exact.length) res += "<hr>";
-        if (partial.length>=30) {
-            res += partial.length + " matching words found";
+        if (foundArticles.length>=30) {
+            var len = foundArticles.length>=100 ? "100+" : foundArticles.length;
+            res += len + " matching words found";
         } else {
+            var partial = [];
+            for (var i=0; i<foundArticles.length; i++) {
+                var entry = foundArticles[i];
+                partial.push(make_link(entry[0], entry[1]));
+            }
             res += partial.join("<br>");
         }
         $("#words")[0].innerHTML = res;
