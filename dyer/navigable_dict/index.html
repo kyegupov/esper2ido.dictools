@@ -1,17 +1,49 @@
 <html>
-<head>
+<head id="head">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script src="jquery-1.4.2.min.js"></script>
 <script src="navigable_dict.js"></script>
 <script src="subdivs.js"></script>
-<script src="wordlist.js"></script>
+<script src="searchIndex.js"></script>
 <link rel="stylesheet" href="navigable_dict.css" />
 <title>Ido &lt;-&gt; English dictionary by Dyer</title>
 </head>
 <body>
+<div id="loadable_scripts"></div>
 <table width="100%" class="bordered" height="100%"><tr><td width="200" height="100%" valign="top" class="bordered">
 <table width="100%" class="allbordered"><td class="dir" width="50%" id="en">Eng-Ido</td><td class="dir" width="50%" id="io">Ido-Eng</td></table>
 <input id="searchbox">
 <div id="words">
 </div>
-</td><td class="bordered"><iframe id="content" src="titlepage.html" width="100%" height="100%"></td></tr></body></html>
+</td><td class="bordered" id="content">
+    
+    <table height="100%" width="100%"><tr height="50%"><td width="100%" valign="top">
+<div id="jsbanner" align="center" style="background-color:red;color:yellow;font-weight:bold;font-size:large">
+JavaScript support required
+</div>
+<script>document.getElementById("jsbanner").style.display="none";</script>
+<div align="center">
+<h2>English-Ido and Ido-English dictionary by Dyer</h2>
+with navigation<br>
+10354 Ido articles, 19944 English articles
+</div>
+<div align="center">
+<h2>Angla-Ido ed Ido-Angla vortaro da Dyer</h2>
+kun navigado<br>
+10354 Ido artikli, 19944 Angla artikli
+</div>
+<div align="center">
+<h2>Англо-идистский и идо-английский словарь Дайера</h2>
+с навигацией<br>
+10354 статей на идо, 19944 статей на английском
+</div>
+<hr>
+</td></tr>
+<tr height="50%" valign="bottom"><td>
+<div align="right">Original dictionaries from <a target="_parent" href="http://www.davidmann.us/ido/dictionaries/">www.davidmann.us</a></div>
+<div align="right">Formatting, corrections and navigation by <a href="mailto:yk4ever@gmail.com">yk4ever@gmail.com</a></div>
+</td></tr></table>
+
+    
+</td></tr></table>
+</body></html>

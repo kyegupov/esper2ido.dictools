@@ -39,3 +39,6 @@ table.bordered, table.bordered td.bordered {
 #letters {
     display:none;
 }
+#content {
+    vertical-align:top
+}

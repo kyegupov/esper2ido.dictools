@@ -22,7 +22,7 @@ os.mkdir("navigable_dict/io")
 pagesize = 300
 
 subdivs_all = {}
-wordlist_all = {}
+searchIndex_all = {}
 
 for langprefix in ["io","en"]:    
 
@@ -35,72 +35,55 @@ for langprefix in ["io","en"]:
     titles = []
 
     print langprefix,len(articles)
-    for i,a in enumerate(articles):
-        ar = a.strip()[3:]
-        j = ar.find("<")
-        
-        ar = ar[:j].lower()
-        cleaned = re_decorators.sub("", ar).replace(u"é", "e").replace(u"è","e").replace(u"ç","c").replace(u"à","a").replace(u"œ","oe").replace(u"æ","ae").replace(u"ô", "o").replace(u"ê", "e")
-        if re_pureword.match(cleaned)==None:
-            print cleaned
-            raise hell2
-
-        titles.append( (cleaned, a) )
-        
-    titles.sort(key=lambda x:x[0])
-
-    sections = []
-    prefix_tree = {}
     
-    prefixes = {"":titles}
+    articles.sort(key = lambda x:x[1][0])
+    searchIndex = {}
+    for i,a in enumerate(articles):
+        article, keywords = a
+        for k in keywords:
+            searchIndex.setdefault(k, set())
+            searchIndex[k].add(i)
 
-    for prefixlimit in range(1,4):
-        key_list = prefixes.keys()
-        for prefix0 in key_list:
-            data = prefixes[prefix0]
-            if len(data)>pagesize:
-                for title, a in data:
-                    prefix = title[:prefixlimit]
-                    while len(prefix)< prefixlimit:
-                        prefix += "_"
-                    prefixes.setdefault(prefix, [])
-                    prefixes[prefix].append((title, a))
-                del prefixes[prefix0]
-                
+    trie = {}
+    prev = ""
+    
+    keys = sorted(searchIndex.keys())
+    cur = keys.pop(0)
+    keys.append("")
+    
+    def get_char_safe(s, i):
+        if i>=len(s): return ""
+        return s[i]
+    
+    count = 0
+    for nxt in keys:
+        curNode = trie
+        i = 0
+        for i, char in enumerate(cur+" "):
+            if i>=len(cur) or (get_char_safe(prev, i)!=char and get_char_safe(nxt, i)!=char):
+                curNode[cur[i:]] = list(searchIndex[cur])
+                break
+            curNode.setdefault(char, {})
+            curNode = curNode[char]
+        
+        prev = cur
+        cur = nxt
             
-    for name in sorted(prefixes.keys()):
-        start_end = name.split("-")
-        start = start_end[0]
-        end = start_end[1] if len(start_end)>1 else start
-        end = end+"zzzzzzzzz"
-        sink2 = codecs.open("navigable_dict/%s/%s.html" % (langprefix,name), "wt", "utf-8")
-        print >>sink2, """<html>
-            <head>
-            <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-            </head>
-            <body>"""
-        count = 0
-        for t,a in prefixes[name]:
-            count += 1
-            a = a.replace("<k>","<b>").replace("</k>","</b>")
-            a = a.replace("<ex>","<i>").replace("</ex>","</i>")
-            print >>sink2, ("<a name=\"%s\"/>" % t)+a+"<br>"
-        print name, count
-        sink2.close()
+
+    searchIndex_all[langprefix] = trie
         
-    subdivs_all[langprefix] = sorted(prefixes.keys())
-    allwords = list(set(t[0] for t in titles))
-    allwords.sort()
-    wordlist_all[langprefix] = allwords
+    for chunkStart in xrange(0, len(articles), 100):
+        out = codecs.open("navigable_dict/%s/%04d.js" % (langprefix, chunkStart/100), "wt", "utf-8")
+        chunk = [a[0] for a in articles[chunkStart:chunkStart+100]]
+        s = json.dumps(chunk, indent=None, sort_keys=True, ensure_ascii=False)
+        out.write(("articleChunks.%s[%s]=" % (langprefix, chunkStart//100))+s)
+        out.close()        
         
 
-out = codecs.open("navigable_dict/subdivs.js", "wt", "utf-8")
-s = json.dumps(subdivs_all, indent=None, sort_keys=True, ensure_ascii=False)
-out.write("subdivs_all="+s)
-out.close()
 
-out = codecs.open("navigable_dict/wordlist.js", "wt", "utf-8")
-s = json.dumps(wordlist_all, indent=None, sort_keys=True, ensure_ascii=False)
-out.write("wordlist_all="+s)
+
+out = codecs.open("navigable_dict/searchIndex.js", "wt", "utf-8")
+s = json.dumps(searchIndex_all, indent=None, sort_keys=True, ensure_ascii=False, separators=(',', ':'))
+out.write("searchIndex_all="+s)
 out.close()
 

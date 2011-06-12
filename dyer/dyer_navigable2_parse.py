@@ -44,6 +44,7 @@ def parse_source(langletter):
             self.is_new_entry = True
             self.chain = []
             self.in_lang_sources = False
+            self.nextEntryChain = []
             
         def handle_starttag(self, tag, attrs):
             if tag=="p":
@@ -63,10 +64,15 @@ def parse_source(langletter):
                 if tag=="br":
                     if self.in_key:
                         self.register_keyword()
+                    self.nextEntryChain = self.chain[:]
                     self.chain.reverse()
                     for tn in self.chain:
                         self.curArticle += "</"+tn+">"
                     self.save_article(True)
+                    for tn in self.nextEntryChain:
+                        if tn=="b":
+                            self.in_key = True
+                        self.curArticle += "<"+tn+">"
                     
                 else:
                     pass
@@ -94,6 +100,8 @@ def parse_source(langletter):
                 if unichr(8212) in data:
                     data = data.split(unichr(8212))[0].rstrip()        
                     self.in_lang_sources = True
+                if self.nextEntryChain:
+                    data = data.lstrip()
                 if self.in_key:
                     self.key += data
                     self.curArticle += data
@@ -141,7 +149,7 @@ def parse_source(langletter):
                         else:
                             ww = w.replace("-","")
                         words2.append(ww.replace("*", ""))
-                newkey = " ".join(words2)
+                newkey = " ".join(words2).lower()
                 optionalSuffixes = re_optionalPart.findall(newkey)
                 if newkey!="":
                     if len(optionalSuffixes)>0:
@@ -156,6 +164,11 @@ def parse_source(langletter):
               
         def save_article(self, end_of_entry):
 
+            assert len(self.curKeys)!=0
+            for k in self.curKeys[:]:
+                latinized = k.replace(u"é", "e").replace(u"è","e").replace(u"ç","c").replace(u"à","a").replace(u"œ","oe").replace(u"æ","ae").replace(u"ô", "o").replace(u"ê", "e")
+                if k!=latinized:
+                    self.curKeys.append(latinized)
             articles.append((self.curArticle.replace("\n"," ").replace("\r","").replace("  "," ").strip(), self.curKeys))
                     
             self.key = ""
@@ -178,5 +191,5 @@ for langprefix in ["io","en"]:
 
     articles = parse_source(langprefix[0])
     cPickle.dump(articles, open(langprefix+".pickle", "wb"))
-    #~ json.dump(articles, open(langprefix+".json", "wb"), indent=4)
+    json.dump(articles, open(langprefix+".json", "wb"), indent=4)
     
