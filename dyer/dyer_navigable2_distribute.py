@@ -1,6 +1,6 @@
 # coding: utf-8
 
-import json,codecs,re,math,os, shutil
+import json,codecs,re,math,os, shutil, pprint
 from StringIO import StringIO
 import glob
 from HTMLParser import HTMLParser 
@@ -13,8 +13,11 @@ try:
 except:
     pass
 
-shutil.rmtree("navigable_dict/en")
-shutil.rmtree("navigable_dict/io")
+try:
+    shutil.rmtree("navigable_dict/en")
+    shutil.rmtree("navigable_dict/io")
+except OSError:
+    pass
 os.mkdir("navigable_dict/en")
 os.mkdir("navigable_dict/io")
     
@@ -78,10 +81,15 @@ for langprefix in ["io","en"]:
     out = codecs.open("navigable_dict/debugIndex_%s.json" % langprefix, "wt", "utf-8")
     s = json.dumps(debugIndex, indent=4, sort_keys=True, ensure_ascii=False, separators=(',', ':'))
     out.write(s)
+    
+    print articles[7979]
         
     for chunkStart in xrange(0, len(articles), 100):
         out = codecs.open("navigable_dict/%s/%04d.js" % (langprefix, chunkStart/100), "wt", "utf-8")
         chunk = [a[0] for a in articles[chunkStart:chunkStart+100]]
+        if chunkStart==7900:
+            print"-----------------------"
+            pprint.pprint(chunk)
         s = json.dumps(chunk, indent=None, sort_keys=True, ensure_ascii=False)
         out.write(("articleChunks.%s[%s]=" % (langprefix, chunkStart//100))+s)
         out.close()        

@@ -150,17 +150,17 @@ def parse_source(langletter):
                     words = k.strip().split(" ")
                     if self.baseword=="" and len(words)==1:
                         self.baseword = words[0].rsplit("-",1)[0].replace("-","")
+                        self.basewordFull = words[0].replace("-","")
                     words2 = []
 
                     for w in words:
-                        if langletter=="e":
-                            words2.append(w)
+                        if langletter=="i" and w.startswith("-") and self.baseword!="":
+                            ww = self.baseword+w[1:].replace("-","")
+                        elif w.endswith(".") and self.baseword!="" and w[0].lower()==self.basewordFull[0].lower():
+                            ww = self.basewordFull
                         else:
-                            if w.startswith("-") and self.baseword!="":
-                                ww = self.baseword+w[1:].replace("-","")
-                            else:
-                                ww = w.replace("-","")
-                            words2.append(ww.replace("*", ""))
+                            ww = w.replace("-","")
+                        words2.append(ww.replace("*", ""))
                     newkey = " ".join(words2).lower()
                     optionalSuffixes = re_optionalPart.findall(newkey)
                     if newkey!="":
@@ -181,7 +181,7 @@ def parse_source(langletter):
                 latinized = k.replace(u"é", "e").replace(u"è","e").replace(u"ç","c").replace(u"à","a").replace(u"œ","oe").replace(u"æ","ae").replace(u"ô", "o").replace(u"ê", "e")
                 if k!=latinized:
                     self.curKeys.append(latinized)
-                if k.startswith("("):
+                if k==".":
                     self.badLines[self.curLine] = k
             articles.append((self.curArticle.replace("\n"," ").replace("\r","").replace("  "," ").strip(), self.curKeys))
                     
