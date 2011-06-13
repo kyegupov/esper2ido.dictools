@@ -1,6 +1,7 @@
 syntax: glob
 
-dyer/navigable_dict/*/*.js
+dyer/navigable_dict/*/index/*.js
+dyer/navigable_dict/*/articles/*.js
 dyer/navigable_dict/subdivs.js
 dyer/navigable_dict/wordlist.js
 dyer/*.json

@@ -31,9 +31,7 @@ function recursive_enumerate(prefix, trieNode, limit, results) {
 
 function refresh_wordlist() {
     var query = $("#searchbox").val();
-    console.log("beep "+query);
     if (query!=oldQuery && query!="") {
-        console.log("INIF");
         oldQuery = query;
         var trie = dictionaries[dir].index;
         var exact = [];
@@ -68,7 +66,6 @@ function refresh_wordlist() {
                     // force update as soon as index is loaded
                     oldQuery = "";
                     setTimeout(refresh_wordlist, 100);
-                    console.log("RETURN");
                     return;
                 }
             } else {
@@ -79,11 +76,9 @@ function refresh_wordlist() {
                 exact.push(make_link(query, trieNode[tail]));
             }
         }
-        console.log("MMM");
         if (!notExists) {
             recursive_enumerate(query, trieNode, 100, partialMatches);
         }
-        console.log("Q");
         var res = exact.join("<br>");
         if (exact.length) res += "<hr>";
         if (partialMatches.length>=30) {
@@ -99,12 +94,10 @@ function refresh_wordlist() {
         }
         $("#words")[0].innerHTML = res;
     }
-    console.log("REACH END");
     setTimeout(refresh_wordlist, 500);
 }
 
 function load_jsonp(name) {
-    console.log("LOADING: "+name);
     var headID = document.getElementsByTagName("head")[0];
     var script = document.createElement('script');
     script.src = name;
