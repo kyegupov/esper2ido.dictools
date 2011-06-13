@@ -10,9 +10,9 @@ import cPickle, json
 
    
 re_separator = re.compile("[;,]")
-re_optionalPart = re.compile(ur"\([a-zéèçàœæôê]+\)", re.I+re.U)
+re_optionalPart = re.compile(ur"\([a-zéèçàœæôê -]+\)", re.I+re.U)
 
-re_ulx = re.compile("^(ul[oaiu], )*(ul[oaiu])$")
+re_allbraced = re.compile("^\([^\)\(]+\)$")
 
     
 def parse_source(langletter):
@@ -47,6 +47,7 @@ def parse_source(langletter):
             self.nextEntryChain = []
             self.in_cf = False
             self.in_vexp = False
+            self.badLines = {}
             
         def handle_starttag(self, tag, attrs):
             if tag=="p":
@@ -94,8 +95,6 @@ def parse_source(langletter):
         
         def handle_data(self, data):
             if self.state == 2:
-                if self.in_lang_sources:
-                    return
                 if unichr(8212) in data:
                     data = data.split(unichr(8212))[0].rstrip()        
                     self.in_lang_sources = True
@@ -146,42 +145,44 @@ def parse_source(langletter):
                 #~ raise hell
             self.key = self.key.rstrip(":")
             keys = []
-            for k in re_separator.split(self.key):
-                words = k.strip().split(" ")
-                if self.baseword=="" and len(words)==1:
-                    self.baseword = words[0].split("-")[0]
-                words2 = []
+            if not (re_allbraced.match(self.key)):
+                for k in re_separator.split(self.key):
+                    words = k.strip().split(" ")
+                    if self.baseword=="" and len(words)==1:
+                        self.baseword = words[0].rsplit("-",1)[0].replace("-","")
+                    words2 = []
 
-                for w in words:
-                    if langletter=="e":
-                        words2.append(w)
-                    else:
-                        if w.startswith("-") and self.baseword!="":
-                            ww = self.baseword+w[1:].replace("-","")
+                    for w in words:
+                        if langletter=="e":
+                            words2.append(w)
                         else:
-                            ww = w.replace("-","")
-                        words2.append(ww.replace("*", ""))
-                newkey = " ".join(words2).lower()
-                optionalSuffixes = re_optionalPart.findall(newkey)
-                if newkey!="":
-                    if len(optionalSuffixes)>0:
-                        if newkey!=optionalSuffixes[0]:
-                            keys.append(newkey.replace(optionalSuffixes[0], "").strip())
-                            keys.append(newkey.replace(optionalSuffixes[0], optionalSuffixes[0][1:-1]))
-                    else:
-                        keys.append(newkey)
-            
+                            if w.startswith("-") and self.baseword!="":
+                                ww = self.baseword+w[1:].replace("-","")
+                            else:
+                                ww = w.replace("-","")
+                            words2.append(ww.replace("*", ""))
+                    newkey = " ".join(words2).lower()
+                    optionalSuffixes = re_optionalPart.findall(newkey)
+                    if newkey!="":
+                        if len(optionalSuffixes)>0:
+                            if newkey!=optionalSuffixes[0]:
+                                keys.append(newkey.replace(optionalSuffixes[0], "").strip())
+                                keys.append(newkey.replace(optionalSuffixes[0], optionalSuffixes[0][1:-1].rstrip("-")))
+                        else:
+                            keys.append(newkey)
+                
             self.curKeys.extend(keys)
             self.key = ""
             self.in_cf = False
               
         def save_article(self, end_of_entry):
-
             assert len(self.curKeys)!=0, self.curArticle
             for k in self.curKeys[:]:
                 latinized = k.replace(u"é", "e").replace(u"è","e").replace(u"ç","c").replace(u"à","a").replace(u"œ","oe").replace(u"æ","ae").replace(u"ô", "o").replace(u"ê", "e")
                 if k!=latinized:
                     self.curKeys.append(latinized)
+                if k.startswith("("):
+                    self.badLines[self.curLine] = k
             articles.append((self.curArticle.replace("\n"," ").replace("\r","").replace("  "," ").strip(), self.curKeys))
                     
             self.key = ""
@@ -197,9 +198,18 @@ def parse_source(langletter):
         print fn
         p = MyParser()
         text = open(fn, "rt").read().decode('latin-1')
-        text = text.replace("</b>(<b>", "(").replace("</b>)<b>", ")")
-        lines = text.splitlines()
-        p.feed(text)
+        assert "^" not in text, fn
+        lines = text.splitlines(True)
+        for i,line in enumerate(lines):
+            p.curLine = i
+            p.feed(line.replace("</b>(<b>", "(").replace("</b>)<b>", ")"))
+        fo = open(fn, "wt")
+        for i,line in enumerate(lines):
+            if i in p.badLines:
+                fo.write("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ %s\n" % p.badLines[i].encode("latin-1", "replace"))
+            fo.write(line.encode("latin1"))
+        fo.close()
+            
         
     return articles    
     
