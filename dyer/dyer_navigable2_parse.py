@@ -9,10 +9,18 @@ from htmlentitydefs import name2codepoint
 import cPickle, json
 
    
-re_separator = re.compile("[;,]")
+re_separator = re.compile("[;,] ")
 re_optionalPart = re.compile(ur"\([a-zéèçàœæôê -]+\)", re.I+re.U)
 
 re_allbraced = re.compile("^\([^\)\(]+\)$")
+re_letter = re.compile("[a-z]", re.I)
+
+
+subst_file = open("substitiution_corrections_en.txt","rt")
+subst_map = {}
+for line in subst_file:
+    base, suffix, replacement = line.strip().split(" ",2)
+    subst_map[(base,suffix)] = replacement
 
     
 def parse_source(langletter):
@@ -125,7 +133,7 @@ def parse_source(langletter):
             if self.state == 2:
                 if tag=="br":
                     if self.in_key:
-                        self.add_corrected_key()
+                        self.register_keyword()
                     self.chain.reverse()
                     for tn in self.chain:
                         self.curArticle += "</"+tn+">"
@@ -147,19 +155,34 @@ def parse_source(langletter):
             keys = []
             if not (re_allbraced.match(self.key)):
                 for k in re_separator.split(self.key):
+                    if k=="":
+                        continue
                     words = k.strip().split(" ")
                     if self.baseword=="" and len(words)==1:
                         self.baseword = words[0].rsplit("-",1)[0].replace("-","")
                         self.basewordFull = words[0].replace("-","")
+                        letter = re_letter.search(self.basewordFull).group(0)
+                        self.basewordMatcher = letter+"."
                     words2 = []
 
                     for w in words:
-                        if langletter=="i" and w.startswith("-") and self.baseword!="":
-                            ww = self.baseword+w[1:].replace("-","")
-                        elif w.endswith(".") and self.baseword!="" and w[0].lower()==self.basewordFull[0].lower():
-                            ww = self.basewordFull
-                        else:
+                        # substitutions!
+                        if w.startswith("-") and self.baseword!="":
+                            if langletter=="i":
+                                ww = self.baseword+w[1:].replace("-","")
+                            if langletter=="e":
+                                pair = (self.basewordFull, w)
+                                if pair in subst_map:
+                                    ww = subst_map[pair]
+                                else:
+                                    ww = self.baseword+w[1:].replace("-","")
+                                
+                        elif self.baseword!="" and self.basewordFull!="" and w.find(self.basewordMatcher)!=-1:
+                            ww = w.replace(self.basewordMatcher, self.basewordFull)
+                        elif langletter=="i":
                             ww = w.replace("-","")
+                        else:
+                            ww = w
                         words2.append(ww.replace("*", ""))
                     newkey = " ".join(words2).lower()
                     optionalSuffixes = re_optionalPart.findall(newkey)
@@ -181,7 +204,7 @@ def parse_source(langletter):
                 latinized = k.replace(u"é", "e").replace(u"è","e").replace(u"ç","c").replace(u"à","a").replace(u"œ","oe").replace(u"æ","ae").replace(u"ô", "o").replace(u"ê", "e")
                 if k!=latinized:
                     self.curKeys.append(latinized)
-                if k==".":
+                if re_letter.search(k)==None:
                     self.badLines[self.curLine] = k
             articles.append((self.curArticle.replace("\n"," ").replace("\r","").replace("  "," ").strip(), self.curKeys))
                     

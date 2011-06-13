@@ -82,14 +82,10 @@ for langprefix in ["io","en"]:
     s = json.dumps(debugIndex, indent=4, sort_keys=True, ensure_ascii=False, separators=(',', ':'))
     out.write(s)
     
-    print articles[7979]
-        
+       
     for chunkStart in xrange(0, len(articles), 100):
         out = codecs.open("navigable_dict/%s/%04d.js" % (langprefix, chunkStart/100), "wt", "utf-8")
         chunk = [a[0] for a in articles[chunkStart:chunkStart+100]]
-        if chunkStart==7900:
-            print"-----------------------"
-            pprint.pprint(chunk)
         s = json.dumps(chunk, indent=None, sort_keys=True, ensure_ascii=False)
         out.write(("articleChunks.%s[%s]=" % (langprefix, chunkStart//100))+s)
         out.close()        
