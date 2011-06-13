@@ -35,29 +35,44 @@ function refresh_wordlist() {
         oldQuery = query;
         var trie = searchIndex_all[dir];
         var exact = [];
+        var partial = [];
         var trieNode = trie;
+        var notExists = false;
+        var partialMatches = [];
+        console.log(query);
         for (var i=0; i<query.length; i++) {
             var ch = query.charAt(i);
-            if (!trieNode.hasOwnProperty(ch)) break;
+            if (!trieNode.hasOwnProperty(ch)) {
+                // no deeper trie char-nodes
+                notExists = true;
+                // our last chance is that there's an appropriate tail-node
+                var tail1 = query.substr(i);
+                for (var key in trieNode) {
+                    if (key.length>1 && key.substr(0, tail1.length)==tail1) {
+                        partialMatches.push([query.substr(0,i)+key, trieNode[key]]);
+                        break;
+                    }
+                }
+                break;
+            }
             trieNode = trieNode[ch];
             var tail = query.substr(i+1);
-            if (trieNode.hasOwnProperty(tail)
-             && trieNode[tail].constructor == Array) {
+            if (trieNode.hasOwnProperty(tail) && trieNode[tail].constructor == Array) {
                 exact.push(make_link(query, trieNode[tail]));
-                break
             }
         }
-        var foundArticles = [];
-        recursive_enumerate(query, trieNode, 100, foundArticles);
+        if (!notExists) {
+            recursive_enumerate(query, trieNode, 100, partialMatches);
+        }
         var res = exact.join("<br>");
         if (exact.length) res += "<hr>";
-        if (foundArticles.length>=30) {
-            var len = foundArticles.length>=100 ? "100+" : foundArticles.length;
+        if (partialMatches.length>=30) {
+            var len = partialMatches.length>=100 ? "100+" : partialMatches.length;
             res += len + " matching words found";
         } else {
-            var partial = [];
-            for (var i=0; i<foundArticles.length; i++) {
-                var entry = foundArticles[i];
+
+            for (var i=0; i<partialMatches.length; i++) {
+                var entry = partialMatches[i];
                 partial.push(make_link(entry[0], entry[1]));
             }
             res += partial.join("<br>");
