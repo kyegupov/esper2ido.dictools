@@ -199,6 +199,7 @@ def parse_source(langletter):
         p = MyParser()
         text = open(fn, "rt").read().decode('latin-1')
         assert "^" not in text, fn
+        text = text.replace("<strong>", "<b>").replace("</strong>", "</b>")
         lines = text.splitlines(True)
         for i,line in enumerate(lines):
             p.curLine = i
