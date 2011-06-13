@@ -22,7 +22,7 @@ function recursive_enumerate(prefix, trieNode, limit, results) {
         var value = trieNode[key];
         if (value.constructor == Array) {
             results.push([prefix+key, value]);
-        } else {
+        } else if (value!=="ext") {
             recursive_enumerate(prefix+key, value, limit, results);
         }
         if (results.length >= limit) break;
@@ -31,15 +31,16 @@ function recursive_enumerate(prefix, trieNode, limit, results) {
 
 function refresh_wordlist() {
     var query = $("#searchbox").val();
+    console.log("beep "+query);
     if (query!=oldQuery && query!="") {
+        console.log("INIF");
         oldQuery = query;
-        var trie = searchIndex_all[dir];
+        var trie = dictionaries[dir].index;
         var exact = [];
         var partial = [];
         var trieNode = trie;
         var notExists = false;
         var partialMatches = [];
-        console.log(query);
         for (var i=0; i<query.length; i++) {
             var ch = query.charAt(i);
             if (!trieNode.hasOwnProperty(ch)) {
@@ -55,15 +56,34 @@ function refresh_wordlist() {
                 }
                 break;
             }
-            trieNode = trieNode[ch];
+            if (trieNode[ch]==="ext") {
+                // check for external index chunk
+                var chunkId = query.substr(0, i+1);
+                if (dictionaries[dir].indexChunks.hasOwnProperty(chunkId)) {
+                    trieNode = dictionaries[dir].indexChunks[chunkId];
+                } else {
+                    $("#words")[0].innerHTML = "<i>Loading index branch...<i>";
+                    // load external index chunk
+                    load_jsonp(dir+"/index/"+chunkId+".js");
+                    // force update as soon as index is loaded
+                    oldQuery = "";
+                    setTimeout(refresh_wordlist, 100);
+                    console.log("RETURN");
+                    return;
+                }
+            } else {
+                trieNode = trieNode[ch];
+            }
             var tail = query.substr(i+1);
             if (trieNode.hasOwnProperty(tail) && trieNode[tail].constructor == Array) {
                 exact.push(make_link(query, trieNode[tail]));
             }
         }
+        console.log("MMM");
         if (!notExists) {
             recursive_enumerate(query, trieNode, 100, partialMatches);
         }
+        console.log("Q");
         var res = exact.join("<br>");
         if (exact.length) res += "<hr>";
         if (partialMatches.length>=30) {
@@ -79,7 +99,16 @@ function refresh_wordlist() {
         }
         $("#words")[0].innerHTML = res;
     }
+    console.log("REACH END");
     setTimeout(refresh_wordlist, 500);
+}
+
+function load_jsonp(name) {
+    console.log("LOADING: "+name);
+    var headID = document.getElementsByTagName("head")[0];
+    var script = document.createElement('script');
+    script.src = name;
+    headID.appendChild(script);
 }
 
 function load_articles(idsByComma) {
@@ -87,22 +116,19 @@ function load_articles(idsByComma) {
     var loading = false;
     for (var i=0; i<ids.length; i++) {
         var id = ids[i];
-        var base = Math.floor(id/100);
-        if (!articleChunks[dir].hasOwnProperty(base)) {
-            var headID = document.getElementsByTagName("head")[0];
-            var script = document.createElement('script');
+        var base = Math.floor(id/200);
+        if (!dictionaries[dir].articleChunks.hasOwnProperty(base)) {
             baseText = ""+base;
             while (baseText.length<4) {
                 baseText = "0"+baseText;
             };
-            script.src = dir+"/"+baseText+".js";
-            headID.appendChild(script);
+            load_jsonp(dir+"/articles/"+baseText+".js");
             loading = true;
         }
     }
     if (loading) {
         $("#content")[0].innerHTML = "<i>Loading...</i>";
-        setTimeout(function(){actually_load_articles(ids)}, 100);
+        setTimeout(function(){actually_load_articles(ids)}, 200);
     } else {
         actually_load_articles(ids);
     }
@@ -113,17 +139,17 @@ function actually_load_articles(ids) {
     var loading = false;
     for (var i=0; i<ids.length; i++) {
         var id = ids[i];
-        var base = Math.floor(id/100);
-        var rem = id % 100;
-        if (articleChunks[dir].hasOwnProperty(base)) {
-            res.push(articleChunks[dir][base][rem]);
+        var base = Math.floor(id/200);
+        var rem = id % 200;
+        if (dictionaries[dir].articleChunks.hasOwnProperty(base)) {
+            res.push(dictionaries[dir].articleChunks[base][rem]);
         } else {
             loading = true;
         }
     }
     if (loading) {
         res.push("<i>Loading...</i>");
-        setTimeout(function(){actually_load_articles(ids)}, 100);
+        setTimeout(function(){actually_load_articles(ids)}, 200);
     }
     $("#content")[0].innerHTML = res.join("<hr>");
 }

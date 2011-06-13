@@ -19,7 +19,11 @@ try:
 except OSError:
     pass
 os.mkdir("navigable_dict/en")
+os.mkdir("navigable_dict/en/index")
+os.mkdir("navigable_dict/en/articles")
 os.mkdir("navigable_dict/io")
+os.mkdir("navigable_dict/io/index")
+os.mkdir("navigable_dict/io/articles")
     
     
 pagesize = 300
@@ -38,7 +42,8 @@ for langprefix in ["io","en"]:
     titles = []
 
     print langprefix,len(articles)
-    
+
+
     articles.sort(key = lambda x:x[1][0])
     searchIndex = {}
     debugIndex = {}
@@ -51,6 +56,10 @@ for langprefix in ["io","en"]:
             debugIndex.setdefault(k, [])
             debugIndex[k].append(keywords[0])
 
+    out = codecs.open("navigable_dict/debugIndex_%s.json" % langprefix, "wt", "utf-8")
+    s = json.dumps(debugIndex, indent=4, sort_keys=True, ensure_ascii=False, separators=(',', ':'))
+    out.write(s)
+
     trie = {}
     prev = ""
     
@@ -62,7 +71,9 @@ for langprefix in ["io","en"]:
         if i>=len(s): return ""
         return s[i]
     
-    count = 0
+
+    # transform search index into trie
+    indexChunks = {}
     for nxt in keys:
         curNode = trie
         i = 0
@@ -70,31 +81,48 @@ for langprefix in ["io","en"]:
             if i>=len(cur) or (get_char_safe(prev, i)!=char and get_char_safe(nxt, i)!=char):
                 curNode[cur[i:]] = list(searchIndex[cur])
                 break
-            curNode.setdefault(char, {})
-            curNode = curNode[char]
+            if i==1:
+                curNode.setdefault(char, "ext")
+                chunkId = cur[:2]
+                indexChunks.setdefault(chunkId, {})
+                curNode = indexChunks[chunkId]
+            else:
+                curNode.setdefault(char, {})
+                curNode = curNode[char]
         
         prev = cur
         cur = nxt
-            
-
-    searchIndex_all[langprefix] = trie
-    out = codecs.open("navigable_dict/debugIndex_%s.json" % langprefix, "wt", "utf-8")
-    s = json.dumps(debugIndex, indent=4, sort_keys=True, ensure_ascii=False, separators=(',', ':'))
-    out.write(s)
     
-       
-    for chunkStart in xrange(0, len(articles), 100):
-        out = codecs.open("navigable_dict/%s/%04d.js" % (langprefix, chunkStart/100), "wt", "utf-8")
-        chunk = [a[0] for a in articles[chunkStart:chunkStart+100]]
+
+    for prefix,tree in indexChunks.iteritems():
+        out = codecs.open("navigable_dict/%s/index/%s.js" % (langprefix, prefix), "wt", "utf-8")
+        s = json.dumps(tree, indent=None, sort_keys=True, ensure_ascii=False, separators=(',', ':'))
+        prefix_path = ["["+json.dumps(c)+"]" for c in prefix]
+        out.write("dictionaries.%s.index%s = " % (langprefix, "".join(prefix_path)))
+        out.write(s)
+        out.close()    
+
+
+    
+    out = codecs.open("navigable_dict/%s/indexRoot.js" % langprefix, "wt", "utf-8")
+    s = json.dumps(trie, indent=None, sort_keys=True, ensure_ascii=False, separators=(',', ':'))
+    out.write("if (!window.hasOwnProperty('dictionaries')) dictionaries = {};\n")
+    out.write("dictionaries.%s = {articleChunks:{},indexChunks:{}};\n" % langprefix)
+    out.write("dictionaries.%s.index = " % langprefix)
+    out.write(s)
+    out.close()    
+            
+    # split articles into chunks
+    for chunkStart in xrange(0, len(articles), 200):
+        out = codecs.open("navigable_dict/%s/articles/%04d.js" % (langprefix, chunkStart/200), "wt", "utf-8")
+        chunk = [a[0] for a in articles[chunkStart:chunkStart+200]]
         s = json.dumps(chunk, indent=None, sort_keys=True, ensure_ascii=False)
-        out.write(("articleChunks.%s[%s]=" % (langprefix, chunkStart//100))+s)
+        out.write("dictionaries.%s.articleChunks[%s] = " % (langprefix, chunkStart//200))
+        out.write(s)
         out.close()        
         
 
 
 
-out = codecs.open("navigable_dict/searchIndex.js", "wt", "utf-8")
-s = json.dumps(searchIndex_all, indent=None, sort_keys=True, ensure_ascii=False, separators=(',', ':'))
-out.write("searchIndex_all="+s)
-out.close()
+
 
