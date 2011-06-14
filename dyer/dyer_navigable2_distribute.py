@@ -38,10 +38,22 @@ class IndexNode(object):
         self.weight = 0
         self.subnodes = {}
         
+class IndexChunkProxy(object):
+    __slots__ = ["prefix"]
+    
+    def __init__(self, prefix):
+        self.prefix = prefix
+        
 class IndexNodesEncoder(json.JSONEncoder):
+    def __init__(self, proxyMap, **kw):
+        self.proxyMap = proxyMap
+        json.JSONEncoder.__init__(self, **kw)
+    
     def default(self, obj):
         if isinstance(obj, IndexNode):
             return obj.subnodes
+        if isinstance(obj, IndexChunkProxy):
+            return self.proxyMap[obj.prefix]
         return json.JSONEncoder.default(self, obj)        
 
 for langprefix in ["io","en"]:    
@@ -103,38 +115,55 @@ for langprefix in ["io","en"]:
         cur = nxt
 
     print trie.weight
-    indexChunkLimit = 2000
+    indexChunkLimit = 1000
     # split index tree into chunks
     # tree dfs
     
-    indexChunks = {}
+    indexChunks = []
     def scan_node(path, node):
         for k,subnode in node.subnodes.iteritems():
             if type(subnode)==list:
                 # can't do nothing to leaf nodes
                 continue
             if subnode.weight<indexChunkLimit:
-                indexChunks[path+k] = subnode
-                node.subnodes[k]="ext"
+                indexChunks.append((path+k, subnode.subnodes, subnode.weight))
+                node.subnodes[k]=IndexChunkProxy(path+k)
             else:
                 scan_node(path+k, subnode)
     scan_node("", trie)
                 
-            
+    indexChunkClusters = []
+    mapPrefixToCluster = {}
+    indexChunks.sort(key=lambda x:x[2])
+    
+    curCluster = []
+    curClusterWeight = 0
+    for prefix, subtree, weight in indexChunks:
+        if curClusterWeight+weight>indexChunkLimit:
+            indexChunkClusters.append(curCluster)
+            curCluster = []
+            curClusterWeight = 0
+        curCluster.append((prefix, subtree))
+        curClusterWeight += weight
+        mapPrefixToCluster[prefix] = len(indexChunkClusters)
+    indexChunkClusters.append(curCluster)
+    
     
 
-    for prefix,tree in indexChunks.iteritems():
-        out = codecs.open("navigable_dict/%s/index/%s.js" % (langprefix, prefix), "wt", "utf-8")
-        s = json.dumps(tree, indent=None, sort_keys=True, ensure_ascii=False, cls=IndexNodesEncoder, separators=(',', ':'))
-        prefix_path = ["["+json.dumps(c)+"]" for c in prefix]
-        out.write("dictionaries.%s.index%s = " % (langprefix, "".join(prefix_path)))
-        out.write(s)
+    for i,cluster in enumerate(indexChunkClusters):
+        out = codecs.open("navigable_dict/%s/index/%04d.js" % (langprefix, i), "wt", "utf-8")
+        for prefix, subtree in cluster:
+            s = json.dumps(subtree, indent=None, sort_keys=True, ensure_ascii=False, cls=IndexNodesEncoder, separators=(',', ':'), proxyMap=None)
+            prefix_path = ["["+json.dumps(c)+"]" for c in prefix]
+            out.write("dictionaries.%s.index%s = " % (langprefix, "".join(prefix_path)))
+            out.write(s)
+            out.write("\n")
         out.close()    
 
 
     
     out = codecs.open("navigable_dict/%s/indexRoot.js" % langprefix, "wt", "utf-8")
-    s = json.dumps(trie, indent=None, sort_keys=True, ensure_ascii=False, cls=IndexNodesEncoder, separators=(',', ':'))
+    s = json.dumps(trie, indent=None, sort_keys=True, ensure_ascii=False, cls=IndexNodesEncoder, separators=(',', ':'), proxyMap=mapPrefixToCluster)
     out.write("if (!window.hasOwnProperty('dictionaries')) dictionaries = {};\n")
     out.write("dictionaries.%s = {articleChunks:{},indexChunks:{}};\n" % langprefix)
     out.write("dictionaries.%s.index = " % langprefix)

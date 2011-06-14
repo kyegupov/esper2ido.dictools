@@ -54,9 +54,12 @@ function refresh_wordlist() {
                 }
                 break;
             }
-            if (trieNode[ch]==="ext") {
+            if (trieNode[ch].constructor == Number) {
                 // check for external index chunk
-                var chunkId = query.substr(0, i+1);
+                var chunkId = ""+trieNode[ch];
+                while (chunkId.length<4) {
+                    chunkId = "0"+chunkId;
+                }
                 if (dictionaries[dir].indexChunks.hasOwnProperty(chunkId)) {
                     trieNode = dictionaries[dir].indexChunks[chunkId];
                 } else {
