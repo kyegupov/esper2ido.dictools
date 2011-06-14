@@ -15,6 +15,7 @@ re_optionalPart = re.compile(ur"\([a-zéèçàœæôê -]+\)", re.I+re.U)
 re_allbraced = re.compile("^\([^\)\(]+\)$")
 re_letter = re.compile("[a-z]", re.I)
 
+re_decorators = re.compile(ur"[«»›‹]+")
 
 subst_file = open("substitiution_corrections_en.txt","rt")
 subst_map = {}
@@ -144,6 +145,8 @@ def parse_source(langletter):
 
         def register_keyword(self):
             self.key = self.key.replace(u"\n",u" ").replace(u"\r",u"").strip().rstrip("*")
+            self.key = re_decorators.sub("", self.key).replace(u"–", "-")
+            
             lbraces = self.curArticle.count("(")
             rbraces = self.curArticle.count(")")
             if self.key and (not self.in_cf) and (not self.in_vexp) and (not self.key.endswith(":") and (rbraces==lbraces)):
@@ -238,7 +241,7 @@ def parse_source(langletter):
     return articles    
     
    
-for langprefix in ["io","en"]:    
+for langprefix in ["ido-eng","eng-ido"]:    
 
     articles = parse_source(langprefix[0])
     cPickle.dump(articles, open(langprefix+".pickle", "wb"))

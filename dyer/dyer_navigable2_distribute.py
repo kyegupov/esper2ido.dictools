@@ -14,16 +14,16 @@ except:
     pass
 
 try:
-    shutil.rmtree("navigable_dict/en")
-    shutil.rmtree("navigable_dict/io")
+    shutil.rmtree("navigable_dict/eng-ido")
+    shutil.rmtree("navigable_dict/ido-eng")
 except OSError:
     pass
-os.mkdir("navigable_dict/en")
-os.mkdir("navigable_dict/en/index")
-os.mkdir("navigable_dict/en/articles")
-os.mkdir("navigable_dict/io")
-os.mkdir("navigable_dict/io/index")
-os.mkdir("navigable_dict/io/articles")
+os.mkdir("navigable_dict/eng-ido")
+os.mkdir("navigable_dict/eng-ido/index")
+os.mkdir("navigable_dict/eng-ido/articles")
+os.mkdir("navigable_dict/ido-eng")
+os.mkdir("navigable_dict/ido-eng/index")
+os.mkdir("navigable_dict/ido-eng/articles")
     
     
 pagesize = 300
@@ -56,13 +56,13 @@ class IndexNodesEncoder(json.JSONEncoder):
             return self.proxyMap[obj.prefix]
         return json.JSONEncoder.default(self, obj)        
 
-for langprefix in ["io","en"]:    
+for langprefix in ["ido-eng","eng-ido"]:    
 
     articles = cPickle.load(open(langprefix+".pickle", "rb"))
 
     re_pureword = re.compile(u"^[a-z]+$")
 
-    re_decorators = re.compile(ur"[\*() «»:;!\.\"\…=›‹\-“”\’]+")
+    re_decorators = re.compile(ur"[«»›‹]+")
 
     titles = []
 
@@ -77,9 +77,9 @@ for langprefix in ["io","en"]:
         for k in keywords:
             searchIndex.setdefault(k, set())
             searchIndex[k].add(i)
-        #~ for k in keywords[1:]:
-            #~ debugIndex.setdefault(k, [])
-            #~ debugIndex[k].append(keywords[0])
+        for k in keywords[1:]:
+            debugIndex.setdefault(k, [])
+            debugIndex[k].append(keywords[0])
 
     out = codecs.open("navigable_dict/debugIndex_%s.json" % langprefix, "wt", "utf-8")
     s = json.dumps(debugIndex, indent=4, sort_keys=True, ensure_ascii=False, separators=(',', ':'))
