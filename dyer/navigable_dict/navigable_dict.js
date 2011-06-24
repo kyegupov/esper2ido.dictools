@@ -1,7 +1,7 @@
 function main() {
     $(".dir").click(select_dir);
     $("#searchbox").change(refresh_wordlist);
-    select_dir.call($("#en")[0]);
+    select_dir.call($("#eng-ido")[0]);
     setTimeout(refresh_wordlist, 500);
     window.oldQuery = "";
 }
@@ -153,7 +153,6 @@ function actually_load_articles(ids) {
 
 dir = null;
 $(document).ready(main);
-articleChunks={"en":{}, "io":{}}
 
 
 

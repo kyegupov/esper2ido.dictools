@@ -25,11 +25,6 @@ os.mkdir("navigable_dict/ido-eng")
 os.mkdir("navigable_dict/ido-eng/index")
 os.mkdir("navigable_dict/ido-eng/articles")
     
-    
-pagesize = 300
-
-subdivs_all = {}
-searchIndex_all = {}
 
 class IndexNode(object):
     __slots__ = ["subnodes", "weight"]
@@ -59,15 +54,12 @@ class IndexNodesEncoder(json.JSONEncoder):
 for langprefix in ["ido-eng","eng-ido"]:    
 
     articles = cPickle.load(open(langprefix+".pickle", "rb"))
-
-    re_pureword = re.compile(u"^[a-z]+$")
-
-    re_decorators = re.compile(ur"[«»›‹]+")
-
-    titles = []
+    
+    import msgpack
+    serialized = msgpack.packb(articles)
+    print len(serialized)
 
     print langprefix,len(articles)
-
 
     articles.sort(key = lambda x:x[1][0])
     searchIndex = {}
@@ -155,7 +147,7 @@ for langprefix in ["ido-eng","eng-ido"]:
         for prefix, subtree in cluster:
             s = json.dumps(subtree, indent=None, sort_keys=True, ensure_ascii=False, cls=IndexNodesEncoder, separators=(',', ':'), proxyMap=None)
             prefix_path = ["["+json.dumps(c)+"]" for c in prefix]
-            out.write("dictionaries.%s.index%s = " % (langprefix, "".join(prefix_path)))
+            out.write("dictionaries[%s].index%s = " % (json.dumps(langprefix), "".join(prefix_path)))
             out.write(s)
             out.write("\n")
         out.close()    
@@ -165,8 +157,8 @@ for langprefix in ["ido-eng","eng-ido"]:
     out = codecs.open("navigable_dict/%s/indexRoot.js" % langprefix, "wt", "utf-8")
     s = json.dumps(trie, indent=None, sort_keys=True, ensure_ascii=False, cls=IndexNodesEncoder, separators=(',', ':'), proxyMap=mapPrefixToCluster)
     out.write("if (!window.hasOwnProperty('dictionaries')) dictionaries = {};\n")
-    out.write("dictionaries.%s = {articleChunks:{},indexChunks:{}};\n" % langprefix)
-    out.write("dictionaries.%s.index = " % langprefix)
+    out.write("dictionaries[%s] = {articleChunks:{},indexChunks:{}};\n" % json.dumps(langprefix))
+    out.write("dictionaries[%s].index = " % json.dumps(langprefix))
     out.write(s)
     out.close()    
             
@@ -175,7 +167,7 @@ for langprefix in ["ido-eng","eng-ido"]:
         out = codecs.open("navigable_dict/%s/articles/%04d.js" % (langprefix, chunkStart/200), "wt", "utf-8")
         chunk = [a[0] for a in articles[chunkStart:chunkStart+200]]
         s = json.dumps(chunk, indent=None, sort_keys=True, ensure_ascii=False)
-        out.write("dictionaries.%s.articleChunks[%s] = " % (langprefix, chunkStart//200))
+        out.write("dictionaries[%s].articleChunks[%s] = " % (json.dumps(langprefix), chunkStart//200))
         out.write(s)
         out.close()        
         
